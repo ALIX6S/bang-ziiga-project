@@ -20,15 +20,15 @@ class Environment {
   // === CONFIGURATION ICI ===
   
   // Pour appareil physique (remplace par TON IP locale)
-   static const String _developmentUrl = 'http://192.168.137.84:3000/api/v1';
+   static const String _developmentUrl = 'https://bang-ziiga-project.onrender.com/api/v1';
   
   
   //  STAGING (serveur de test en ligne)
-  static const String _stagingUrl = 'https://bang-ziiga-backend.onrender.com/api/v1';
+  static const String _stagingUrl = 'https://bang-ziiga-project.onrender.com/api/v1';
   
   
   //  PRODUCTION (serveur final)
-  static const String _productionUrl = 'https://bang-ziiga-backend.onrender.com/api/v1';
+  static const String _productionUrl = 'https://bang-ziiga-project.onrender.com/api/v1';
   
   
   // Informations de debug

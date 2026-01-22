@@ -29,7 +29,7 @@ const startServer = async () => {
       
       if (process.env.NODE_ENV === 'production') {
         console.log(' MODE PRODUCTION'.green.bold);
-        console.log(` API URL: ${process.env.RENDER_EXTERNAL_URL || 'https://bang-ziiga-backend.onrender.com'}`.cyan);
+        console.log(` API URL: ${process.env.RENDER_EXTERNAL_URL || 'https://bang-ziiga-project.onrender.com'}`.cyan);
       } else {
         console.log(' MODE DÉVELOPPEMENT'.yellow.bold);
         console.log('');

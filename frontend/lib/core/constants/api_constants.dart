@@ -1,6 +1,6 @@
 class ApiConstants {
   // Base URL - À MODIFIER avec ton API réelle
-  static const String baseUrl = 'https://bang-ziiga-backend.onrender.com/api/v1';
+  static const String baseUrl = 'https://bang-ziiga-project.onrender.com/api/v1';
   
   // Endpoints d'authentification
   static const String register = '/auth/register';

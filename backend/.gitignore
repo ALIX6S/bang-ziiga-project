@@ -23,9 +23,12 @@ Thumbs.db
 logs/
 *.log
 
-# Uploads (ne pas versionner les images uploadées)
-uploads/*
-!uploads/.gitkeep
+
+# Uploads - MODIFIÉ : Autoriser les images statiques
+# uploads/*                    # ← COMMENTÉ ou SUPPRIMÉ
+# !uploads/.gitkeep
+uploads/.tmp                
+uploads/**/*.tmp
 
 # Coverage
 coverage/
