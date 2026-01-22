@@ -8,8 +8,6 @@ const connectDB = async () => {
       useUnifiedTopology: true,
     };
 
-    
-
     const conn = await mongoose.connect(process.env.MONGODB_URI, options);
 
     console.log(` MongoDB Connecté: ${conn.connection.host}`.cyan.bold);
