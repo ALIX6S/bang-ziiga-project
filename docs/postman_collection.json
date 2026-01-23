@@ -1,0 +1,283 @@
+{
+  "info": {
+    "name": "Bãng Zĩiga API",
+    "description": "Collection complète pour tester l'API de tourisme local",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "2. API Documentation",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/{{version}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "{{version}}"]
+        }
+      }
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Test User\",\n  \"email\": \"test@example.com\",\n  \"password\": \"test123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Sauvegarder le token automatiquement",
+                  "if (pm.response.code === 200) {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.environment.set('authToken', jsonData.token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@bangziiga.com\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "auth", "me"]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/auth/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "auth", "logout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sites",
+      "item": [
+        {
+          "name": "Get All Sites",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/sites",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "sites"]
+            }
+          }
+        },
+        {
+          "name": "Get Featured Sites",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/sites/featured",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "sites", "featured"]
+            }
+          }
+        },
+        {
+          "name": "Search Sites",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/sites?search=monument",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "sites"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "monument"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/sites?category=Monument",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "sites"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "Monument"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Itinéraires",
+      "item": [
+        {
+          "name": "Get All Itineraires",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/itineraires",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "itineraires"]
+            }
+          }
+        },
+        {
+          "name": "Filter by Difficulty",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/itineraires?difficulty=facile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "itineraires"],
+              "query": [
+                {
+                  "key": "difficulty",
+                  "value": "facile"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Culture",
+      "item": [
+        {
+          "name": "Get All Culture Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/culture",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "culture"]
+            }
+          }
+        },
+        {
+          "name": "Get Traditions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/culture/tradition",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "culture", "tradition"]
+            }
+          }
+        },
+        {
+          "name": "Get Gastronomie",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/{{version}}/culture/gastronomie",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "{{version}}", "culture", "gastronomie"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "version",
+      "value": "v1"
+    },
+    {
+      "key": "authToken",
+      "value": ""
+    }
+  ]
+}
