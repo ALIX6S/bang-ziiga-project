@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:bang_ziiga/models/site.dart';
 import 'package:bang_ziiga/screens/sites/widgets/site_card.dart';
-import 'package:bang_ziiga/core/config/colors.dart';
 
 void main() {
   group('SiteCard Widget Tests', () {
