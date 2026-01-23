@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 import '../models/site.dart';
 import '../data/repositories/sites_repository.dart';
 
 enum SitesState { initial, loading, loaded, error }
 
 class SitesProvider with ChangeNotifier {
+  @visibleForTesting
   SitesState _state = SitesState.initial;
+  @visibleForTesting
   List<Site> _sites = [];
+  @visibleForTesting
   List<Site> _featuredSites = [];
   Site? _selectedSite;
   String? _errorMessage;
@@ -90,12 +94,24 @@ class SitesProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  /// Méthode pour changer l'état en test
+  @visibleForTesting
+  void setStateForTesting(SitesState newState, {String? error}) {
+    _setState(newState, error: error);
+  }
+
   /// Réinitialiser l'erreur
   void clearError() {
     _errorMessage = null;
     if (_state == SitesState.error) {
       _setState(SitesState.initial);
     }
+  }
+
+  /// Méthode pour définir les sites en test
+  @visibleForTesting
+  void setSitesForTesting(List<Site> sites) {
+    _sites = sites;
   }
 
   /// Rafraîchir les données
