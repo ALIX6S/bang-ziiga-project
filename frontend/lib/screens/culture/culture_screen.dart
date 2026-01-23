@@ -81,7 +81,7 @@ class _CultureScreenState extends State<CultureScreen>
           title: 'Traditions Ancestrales',
           description:
               'Le Burkina Faso est riche de traditions ancestrales qui se perpétuent de génération en génération. Les cérémonies traditionnelles, les danses rituelles et les pratiques coutumières constituent le cœur de l\'identité culturelle burkinabè.',
-          color: AppColors.sage,
+          color: AppColors.evergreen,
         ),
         const SizedBox(height: 16),
         _buildInfoCard(
@@ -89,7 +89,7 @@ class _CultureScreenState extends State<CultureScreen>
           title: 'Musique et Danse',
           description:
               'La musique et la danse occupent une place centrale dans la culture locale. Des instruments traditionnels comme le balafon, le djembé et la kora accompagnent les célébrations et les événements importants de la vie communautaire.',
-          color: AppColors.sage,
+          color: AppColors.evergreen,
         ),
       ],
     );
@@ -104,7 +104,7 @@ class _CultureScreenState extends State<CultureScreen>
           title: 'Plats Traditionnels',
           description:
               'La cuisine burkinabè est variée et savoureuse. Le Tô (à base de mil, sorgho ou maïs) servi avec différentes sauces reste le plat de base. Le Riz gras, le Babenda et le Poulet bicyclette sont également des incontournables de la gastronomie locale.',
-          color: AppColors.moss,
+          color: AppColors.evergreen,
         ),
         const SizedBox(height: 16),
         _buildInfoCard(
@@ -112,7 +112,7 @@ class _CultureScreenState extends State<CultureScreen>
           title: 'Boissons Locales',
           description:
               'Le Dolo (bière de mil), le Jus de Bissap (hibiscus) et le Zoom-Koom sont des boissons traditionnelles très appréciées. Ces breuvages accompagnent souvent les repas et les célébrations.',
-          color: AppColors.moss,
+          color: AppColors.evergreen,
         ),
       ],
     );
