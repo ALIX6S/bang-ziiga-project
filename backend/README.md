@@ -16,7 +16,8 @@ API REST pour l'application mobile de tourisme local Bãng Zĩiga.
 
 ```bash
 # 1. Cloner le projet
-git clone <url-du-repo>
+git clone https://github.com/alixHub-ux/bang-ziiga-project.git
+cd bang-ziiga-project
 cd backend
 
 # 2. Installer les dépendances
@@ -65,7 +66,8 @@ backend/
 
 ### Base URL
 ```
-http://localhost:3000/api/v1
+L'api est deploye sur render et est accessible avec l'URL
+https://bang-ziiga-project.onrender.com/api/v1
 ```
 
 ### Authentification
@@ -162,7 +164,7 @@ curl -X POST http://localhost:3000/api/v1/auth/login \
 
 ### Tester avec Postman
 
-1. Importer la collection Postman (si disponible)
+1. Importer la collection Postman (qui se trouve dans le dossier docs)
 2. Configurer la variable d'environnement `baseUrl` = `http://localhost:3000/api/v1`
 3. Tester les endpoints
 
@@ -215,10 +217,10 @@ Fichier `.env` requis :
 NODE_ENV=development
 PORT=3000
 API_VERSION=v1
-MONGODB_URI=mongodb://localhost:27017/bang_ziiga
+MONGODB_URI=mongodb+srv://bangziiga_admin:<db_password>@bangziiga.twkyqva.mongodb.net/?appName=bangziiga
 JWT_SECRET=votre_cle_secrete_super_longue
 JWT_EXPIRES_IN=7d
-CORS_ORIGIN=http://localhost:3000
+CORS_ORIGIN=*
 ```
 
 ---
@@ -274,4 +276,4 @@ Ce projet est développé dans un cadre pédagogique.
 
 ##  Support
 
-Pour toute question : [votre-email]
+Pour toute question : alixcarinestudies@gmail.com
