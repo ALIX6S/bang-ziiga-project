@@ -45,8 +45,9 @@ Bãng Zĩiga est une application mobile permettant de découvrir les sites touri
 
 ```bash
 # Cloner le projet
-git clone <url-du-repo>
-cd bang_ziiga
+git clone https://github.com/alixHub-ux/bang-ziiga-project.git
+cd bang_ziigaa-project
+cd frontend
 
 # Installer les dépendances
 flutter pub get
@@ -63,7 +64,7 @@ flutter run
 Modifier l'URL de l'API dans `lib/core/constants/api_constants.dart` :
 
 ```dart
-static const String baseUrl = 'https://votre-api.com/v1';
+static const String baseUrl = 'https://bang-ziiga-project.onrender.com/api/v1';
 ```
 
 ---
