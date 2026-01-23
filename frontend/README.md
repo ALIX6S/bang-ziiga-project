@@ -159,5 +159,5 @@ Ce projet est développé dans un cadre pédagogique.
 ## 📞 Support
 
 Pour toute question ou problème :
-- Email: alixcarinestudies
-- Issues GitHub: [lien-repo]
+- Email: alixcarinestudies@gmail.com
+- Issues GitHub: https://github.com/alixHub-ux/bang-ziiga-project.git
