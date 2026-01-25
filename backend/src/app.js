@@ -14,7 +14,7 @@ const app = express();
 // MIDDLEWARES DE SÉCURITÉ
 // ============================================
 
-// ⚠️ IMPORTANT : Helmet AVANT les routes statiques
+//  IMPORTANT : Helmet AVANT les routes statiques
 app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" },
   contentSecurityPolicy: false, // Désactiver temporairement pour debug
@@ -62,12 +62,12 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // ============================================
-// ⚠️ IMPORTANT : FICHIERS STATIQUES EN PREMIER
+//  IMPORTANT : FICHIERS STATIQUES EN PREMIER
 // ============================================
 
 // Middleware de logging pour debug
 app.use('/uploads', (req, res, next) => {
-  console.log(`📸 Image demandée: ${req.path}`);
+  console.log(` Image demandée: ${req.path}`);
   next();
 });
 
@@ -132,10 +132,10 @@ app.get('/test-uploads', (req, res) => {
 app.get('/', (req, res) => {
   res.status(200).json({
     success: true,
-    message: '🏛️ Bienvenue sur l\'API Bãng Zĩiga',
+    message: ' Bienvenue sur l\'API Bãng Zĩiga',
     description: 'API REST pour l\'application de tourisme local',
     version: process.env.API_VERSION,
-    status: 'Opérationnelle ✅',
+    status: 'Opérationnelle ',
     endpoints: {
       health: '/health',
       testImages: '/test-images',
@@ -158,7 +158,7 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Routes API principales - ⚠️ APRÈS les routes statiques
+// Routes API principales -  APRÈS les routes statiques
 app.use(`/api/${process.env.API_VERSION}`, routes);
 
 // ============================================
