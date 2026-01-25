@@ -146,50 +146,6 @@ app.get('/', (req, res) => {
   });
 });
 
-// Route de debug du système de fichiers
-app.get('/debug-fs', (req, res) => {
-  const fs = require('fs');
-  const path = require('path');
-  
-  const uploadsPath = path.join(__dirname, '..', 'uploads');
-  const cwd = process.cwd();
-  
-  let debug = {
-    cwd: cwd,
-    __dirname: __dirname,
-    uploadsPath: uploadsPath,
-    uploadsExists: fs.existsSync(uploadsPath),
-  };
-  
-  // Lister le contenu
-  if (debug.uploadsExists) {
-    try {
-      debug.uploadsList = fs.readdirSync(uploadsPath);
-      
-      const sitesPath = path.join(uploadsPath, 'sites');
-      if (fs.existsSync(sitesPath)) {
-        debug.sites = fs.readdirSync(sitesPath);
-      }
-      
-      const itinerairesPath = path.join(uploadsPath, 'itineraires');
-      if (fs.existsSync(itinerairesPath)) {
-        debug.itineraires = fs.readdirSync(itinerairesPath);
-      }
-    } catch (error) {
-      debug.error = error.message;
-    }
-  } else {
-    // Lister ce qui existe à la racine
-    debug.rootContents = fs.readdirSync(cwd);
-  }
-  
-  res.json(debug);
-});
-```
-
-Testez :
-```
-https://bang-ziiga-project.onrender.com/debug-fs
 
 app.get('/health', (req, res) => {
   res.status(200).json({
