@@ -42,7 +42,6 @@ const cultureInfoSchema = new mongoose.Schema(
   }
 );
 
-// Index pour la recherche
 cultureInfoSchema.index({ type: 1, isPublished: 1 });
 cultureInfoSchema.index({ title: 'text', content: 'text' });
 

@@ -52,7 +52,6 @@ const itineraireSchema = new mongoose.Schema(
   }
 );
 
-// Populate automatiquement les sites lors des requêtes
 itineraireSchema.pre(/^find/, function (next) {
   this.populate({
     path: 'sites',
@@ -61,12 +60,10 @@ itineraireSchema.pre(/^find/, function (next) {
   next();
 });
 
-// Virtual pour compter le nombre de sites
 itineraireSchema.virtual('sitesCount').get(function () {
   return this.sites ? this.sites.length : 0;
 });
 
-// Inclure les virtuals dans les conversions JSON
 itineraireSchema.set('toJSON', { virtuals: true });
 itineraireSchema.set('toObject', { virtuals: true });
 

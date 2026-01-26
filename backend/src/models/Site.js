@@ -61,7 +61,6 @@ const siteSchema = new mongoose.Schema(
   }
 );
 
-// Index pour améliorer les performances de recherche
 siteSchema.index({ name: 'text', description: 'text', location: 'text' });
 siteSchema.index({ category: 1 });
 siteSchema.index({ isFeatured: 1 });
