@@ -1,0 +1,140 @@
+========================================
+  DIAGNOSTIC COMPLET - BÃNG ZĨIGA
+========================================
+
+### 1. STRUCTURE PROJET ###
+total 292
+drwxrwxr-x   6 carine carine   4096 Jan 24 22:41 .
+drwxrwxr-x   6 carine carine   4096 Jan 22 14:41 ..
+-rw-rw-r--   1 carine carine   4690 Jan 24 15:49 diagnose_mongodb.js
+-rwxrwxr-x   1 carine carine   1382 Jan 24 22:39 diagnostic_complet.sh
+-rw-rw-r--   1 carine carine    147 Jan 24 22:41 diagnostic_resultat.txt
+-rw-rw-r--   1 carine carine    878 Jan 24 17:04 .env
+-rw-rw-r--   1 carine carine    814 Jan 19 23:25 .env.example
+-rw-rw-r--   1 carine carine   1806 Jan 24 15:51 get_mongodb_ids.js
+-rw-rw-r--   1 carine carine    458 Jan 24 16:09 .gitignore
+drwxrwxr-x 331 carine carine  12288 Jan 19 23:15 node_modules
+-rw-rw-r--   1 carine carine   1056 Jan 19 23:15 package.json
+-rw-rw-r--   1 carine carine 200328 Jan 19 23:15 package-lock.json
+-rw-rw-r--   1 carine carine   6094 Jan 24 16:26 README.md
+-rw-rw-r--   1 carine carine   4309 Jan 22 15:43 server.js
+drwxrwxr-x   9 carine carine   4096 Jan 21 22:39 src
+drwxrwxr-x   2 carine carine   4096 Jan 19 22:57 tests
+-rw-rw-r--   1 carine carine   6123 Jan 24 18:34 update_existing_images.js
+-rw-rw-r--   1 carine carine   2781 Jan 24 15:57 update_image_urls.js
+drwxrwxr-x   5 carine carine   4096 Jan 24 19:41 uploads
+
+### 2. CONTENU UPLOADS/SITES ###
+total 564K
+-rw-rw-r-- 1 carine carine  91K Jan 24 15:16 cathedrale.jpeg
+-rw-rw-r-- 1 carine carine 130K Jan 24 15:16 granite.jpeg
+-rw-rw-r-- 1 carine carine  64K Jan 24 15:16 monument.jpeg
+-rw-rw-r-- 1 carine carine 110K Jan 24 15:16 national.jpeg
+-rw-rw-r-- 1 carine carine  83K Jan 24 15:16 parc_bangre.jpeg
+-rw-rw-r-- 1 carine carine  78K Jan 24 15:16 rodo_woko.jpeg
+
+### 3. CONTENU UPLOADS/ITINERAIRES ###
+total 384K
+-rw-rw-r-- 1 carine carine 101K Jan 24 15:16 laongo.jpeg
+-rw-rw-r-- 1 carine carine  72K Jan 24 15:16 love_ouaga.jpeg
+-rw-rw-r-- 1 carine carine 206K Jan 24 16:12 parc.jpg
+
+### 4. FICHIERS GIT UPLOADS ###
+uploads/.gitkeep
+uploads/itineraires/.gitkeep
+uploads/itineraires/laongo.jpeg
+uploads/itineraires/love_ouaga.jpeg
+uploads/itineraires/parc.jpg
+uploads/sites/.gitkeep
+uploads/sites/cathedrale.jpeg
+uploads/sites/granite.jpeg
+uploads/sites/monument.jpeg
+uploads/sites/national.jpeg
+uploads/sites/parc_bangre.jpeg
+uploads/sites/rodo_woko.jpeg
+
+### 5. GITIGNORE (uploads) ###
+# Uploads - MODIFIÉ : Autoriser les images statiques
+# uploads/*                    # ← COMMENTÉ ou SUPPRIMÉ
+# !uploads/.gitkeep
+uploads/.tmp                
+uploads/**/*.tmp
+
+# Coverage
+coverage/
+
+### 6. GIT STATUS ###
+ M src/app.js
+?? diagnostic_complet.sh
+?? diagnostic_resultat.txt
+
+### 7. STRUCTURE DOSSIERS ###
+.
+./tests
+./uploads
+./uploads/users
+./uploads/sites
+./uploads/itineraires
+./src
+./src/middlewares
+./src/controllers
+./src/utils
+./src/routes
+./src/config
+./src/seeders
+./src/models
+./node_modules
+
+### 8. TEST RENDER DEBUG-FS ###
+{
+    "success": false,
+    "message": "Route /debug-fs non trouv\u00e9e",
+    "suggestion": "Consultez la documentation \u00e0 http://bang-ziiga-project.onrender.com/api/v1"
+}
+
+### 9. TEST RENDER TEST-UPLOADS ###
+{
+    "uploadsPath": "/opt/render/project/src/backend/uploads",
+    "exists": true,
+    "contents": {
+        "sites": [
+            ".gitkeep",
+            "cathedrale.jpeg",
+            "granite.jpeg",
+            "monument.jpeg",
+            "national.jpeg",
+            "parc_bangre.jpeg",
+            "rodo_woko.jpeg"
+        ],
+        "itineraires": [
+            ".gitkeep",
+            "laongo.jpeg",
+            "love_ouaga.jpeg",
+            "parc.jpg"
+        ]
+    }
+}
+
+### 10. MONGODB CHECK ###
+node:internal/modules/cjs/loader:1386
+  throw err;
+  ^
+
+Error: Cannot find module '/home/carine/DCLIC/bang-ziiga-project/backend/quick_check_mongo.js'
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1383:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+    at Function._load (node:internal/modules/cjs/loader:1192:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v22.20.0
+
+========================================
+  FIN DU DIAGNOSTIC
+========================================
