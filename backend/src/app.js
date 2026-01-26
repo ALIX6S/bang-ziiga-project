@@ -67,12 +67,11 @@ if (process.env.NODE_ENV === 'development') {
 
 // Middleware de logging pour debug
 app.use('/uploads', (req, res, next) => {
-  console.log(` Image demandée: ${req.path}`);
+  console.log(`📸 Image demandée: ${req.path}`); // ← CORRIGÉ
   next();
 });
 
 // Servir les fichiers statiques
-// Le chemin depuis src/app.js vers uploads/ est '../uploads'
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads'), {
   maxAge: '7d',
   etag: true,
@@ -82,7 +81,6 @@ app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads'), {
     res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
     res.setHeader('Cache-Control', 'public, max-age=604800');
     
-    // Type MIME selon l'extension
     if (filePath.endsWith('.jpg') || filePath.endsWith('.jpeg')) {
       res.setHeader('Content-Type', 'image/jpeg');
     } else if (filePath.endsWith('.png')) {
@@ -106,13 +104,11 @@ app.get('/test-uploads', (req, res) => {
   
   if (result.exists) {
     try {
-      // Lister sites
       const sitesPath = path.join(uploadsPath, 'sites');
       if (fs.existsSync(sitesPath)) {
         result.contents.sites = fs.readdirSync(sitesPath);
       }
       
-      // Lister itineraires
       const itinerairesPath = path.join(uploadsPath, 'itineraires');
       if (fs.existsSync(itinerairesPath)) {
         result.contents.itineraires = fs.readdirSync(itinerairesPath);
@@ -123,6 +119,42 @@ app.get('/test-uploads', (req, res) => {
   }
   
   res.json(result);
+});
+
+// Route de debug du système de fichiers
+app.get('/debug-fs', (req, res) => {
+  const fs = require('fs');
+  const uploadsPath = path.join(__dirname, '..', 'uploads');
+  const cwd = process.cwd();
+  
+  let debug = {
+    cwd: cwd,
+    __dirname: __dirname,
+    uploadsPath: uploadsPath,
+    uploadsExists: fs.existsSync(uploadsPath),
+  };
+  
+  if (debug.uploadsExists) {
+    try {
+      debug.uploadsList = fs.readdirSync(uploadsPath);
+      
+      const sitesPath = path.join(uploadsPath, 'sites');
+      if (fs.existsSync(sitesPath)) {
+        debug.sites = fs.readdirSync(sitesPath);
+      }
+      
+      const itinerairesPath = path.join(uploadsPath, 'itineraires');
+      if (fs.existsSync(itinerairesPath)) {
+        debug.itineraires = fs.readdirSync(itinerairesPath);
+      }
+    } catch (error) {
+      debug.error = error.message;
+    }
+  } else {
+    debug.rootContents = fs.readdirSync(cwd);
+  }
+  
+  res.json(debug);
 });
 
 // ============================================
