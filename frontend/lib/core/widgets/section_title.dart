@@ -9,13 +9,13 @@ class SectionTitle extends StatelessWidget {
   final IconData? icon;
 
   const SectionTitle({
-    Key? key,
+    super.key,
     required this.title,
     this.subtitle,
     this.actionText,
     this.onActionPressed,
     this.icon,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class SectionTitle extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: AppColors.sage.withOpacity(0.2),
+                  color: AppColors.sage.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
@@ -77,7 +77,7 @@ class SectionTitle extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             subtitle!,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
               color: AppColors.textSecondary,
             ),

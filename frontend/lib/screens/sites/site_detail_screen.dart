@@ -7,9 +7,9 @@ class SiteDetailScreen extends StatelessWidget {
   final Site site;
 
   const SiteDetailScreen({
-    Key? key,
+    super.key,
     required this.site,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class SiteDetailScreen extends StatelessWidget {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
+                    color: Colors.black.withValues(alpha: 0.2),
                     blurRadius: 8,
                   ),
                 ],
@@ -61,7 +61,7 @@ class SiteDetailScreen extends StatelessWidget {
                     child: Icon(
                       Icons.image_not_supported,
                       size: 60,
-                      color: AppColors.sage.withOpacity(0.5),
+                      color: AppColors.sage.withValues(alpha: 0.5),
                     ),
                   ),
                 ),
@@ -91,7 +91,7 @@ class SiteDetailScreen extends StatelessWidget {
                         vertical: 6,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.sage.withOpacity(0.2),
+                        color: AppColors.sage.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
@@ -140,7 +140,7 @@ class SiteDetailScreen extends StatelessWidget {
 
                     // Divider
                     Divider(
-                      color: AppColors.sage.withOpacity(0.2),
+                      color: AppColors.sage.withValues(alpha: 0.2),
                       thickness: 1,
                     ),
                     const SizedBox(height: 24),
@@ -172,10 +172,10 @@ class SiteDetailScreen extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: AppColors.evergreen.withOpacity(0.1),
+                          color: AppColors.evergreen.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: AppColors.evergreen.withOpacity(0.3),
+                            color: AppColors.evergreen.withValues(alpha: 0.3),
                             width: 1,
                           ),
                         ),

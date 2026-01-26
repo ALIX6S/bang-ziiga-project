@@ -6,19 +6,18 @@ class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
-      
+
       // Palette de couleurs
-      colorScheme: ColorScheme.light(
+      colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
         secondary: AppColors.secondary,
-        background: AppColors.background,
         surface: AppColors.surface,
         error: AppColors.error,
       ),
-      
+
       // Scaffold
       scaffoldBackgroundColor: Colors.white,
-      
+
       // AppBar
       appBarTheme: AppBarTheme(
         backgroundColor: AppColors.evergreen,
@@ -31,7 +30,7 @@ class AppTheme {
           color: Colors.white,
         ),
       ),
-      
+
       // Texte
       textTheme: GoogleFonts.poppinsTextTheme(
         const TextTheme(
@@ -51,7 +50,7 @@ class AppTheme {
             fontWeight: FontWeight.w600,
             color: AppColors.textPrimary,
           ),
-          
+
           // Corps de texte
           bodyLarge: TextStyle(
             fontSize: 16,
@@ -68,7 +67,7 @@ class AppTheme {
             fontWeight: FontWeight.normal,
             color: AppColors.textHint,
           ),
-          
+
           // Labels
           labelLarge: TextStyle(
             fontSize: 16,
@@ -77,7 +76,7 @@ class AppTheme {
           ),
         ),
       ),
-      
+
       // Boutons
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -94,18 +93,18 @@ class AppTheme {
           ),
         ),
       ),
-      
+
       // Input fields
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: AppColors.sageHint.withOpacity(0.3),
+        fillColor: AppColors.sageHint.withValues(alpha: 0.3),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: AppColors.sage.withOpacity(0.3)),
+          borderSide: BorderSide(color: AppColors.sage.withValues(alpha: 0.3)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -115,10 +114,10 @@ class AppTheme {
           borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: AppColors.error, width: 1),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        hintStyle: TextStyle(color: AppColors.textHint),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        hintStyle: const TextStyle(color: AppColors.textHint),
       ),
-      
     );
   }
 }

@@ -9,13 +9,13 @@ class EmptyStateWidget extends StatelessWidget {
   final VoidCallback? onActionPressed;
 
   const EmptyStateWidget({
-    Key? key,
+    super.key,
     required this.icon,
     required this.title,
     required this.message,
     this.actionText,
     this.onActionPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class EmptyStateWidget extends StatelessWidget {
             Icon(
               icon,
               size: 80,
-              color: AppColors.sage.withOpacity(0.5),
+              color: AppColors.sage.withValues(alpha: 0.5),
             ),
             const SizedBox(height: 24),
             Text(
@@ -43,7 +43,7 @@ class EmptyStateWidget extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               message,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14,
                 color: AppColors.textSecondary,
               ),

@@ -8,10 +8,10 @@ class ItineraireCard extends StatelessWidget {
   final VoidCallback onTap;
 
   const ItineraireCard({
-    Key? key,
+    super.key,
     required this.itineraire,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   Color _getDifficultyColor() {
     switch (itineraire.difficulty.toLowerCase()) {
@@ -65,12 +65,12 @@ class ItineraireCard extends StatelessWidget {
                   child: Icon(
                     Icons.route,
                     size: 48,
-                    color: AppColors.sage.withOpacity(0.5),
+                    color: AppColors.sage.withValues(alpha: 0.5),
                   ),
                 ),
               ),
             ),
-            
+
             // Contenu
             Padding(
               padding: const EdgeInsets.all(12),
@@ -89,12 +89,12 @@ class ItineraireCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 8),
-                  
+
                   // Infos (durée, difficulté, nombre de sites)
                   Row(
                     children: [
                       // Durée
-                      Icon(
+                      const Icon(
                         Icons.access_time,
                         size: 14,
                         color: AppColors.moss,
@@ -102,13 +102,13 @@ class ItineraireCard extends StatelessWidget {
                       const SizedBox(width: 4),
                       Text(
                         itineraire.duration,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 12,
                           color: AppColors.textSecondary,
                         ),
                       ),
                       const SizedBox(width: 12),
-                      
+
                       // Difficulté
                       Container(
                         padding: const EdgeInsets.symmetric(
@@ -116,7 +116,7 @@ class ItineraireCard extends StatelessWidget {
                           vertical: 2,
                         ),
                         decoration: BoxDecoration(
-                          color: _getDifficultyColor().withOpacity(0.2),
+                          color: _getDifficultyColor().withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         child: Text(
@@ -129,7 +129,7 @@ class ItineraireCard extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      
+
                       // Nombre de sites
                       Container(
                         padding: const EdgeInsets.symmetric(
@@ -137,7 +137,7 @@ class ItineraireCard extends StatelessWidget {
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
-                          color: AppColors.evergreen.withOpacity(0.1),
+                          color: AppColors.evergreen.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         child: Row(

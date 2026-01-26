@@ -8,9 +8,9 @@ class ItineraireDetailScreen extends StatelessWidget {
   final Itineraire itineraire;
 
   const ItineraireDetailScreen({
-    Key? key,
+    super.key,
     required this.itineraire,
-  }) : super(key: key);
+  });
 
   Color _getDifficultyColor() {
     switch (itineraire.difficulty.toLowerCase()) {
@@ -43,7 +43,7 @@ class ItineraireDetailScreen extends StatelessWidget {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
+                    color: Colors.black.withValues(alpha: 0.2),
                     blurRadius: 8,
                   ),
                 ],
@@ -134,7 +134,7 @@ class ItineraireDetailScreen extends StatelessWidget {
 
                     // Divider
                     Divider(
-                      color: AppColors.sage.withOpacity(0.2),
+                      color: AppColors.sage.withValues(alpha: 0.2),
                       thickness: 1,
                     ),
                     const SizedBox(height: 24),
@@ -215,10 +215,11 @@ class ItineraireDetailScreen extends StatelessWidget {
                             child: Container(
                               padding: const EdgeInsets.all(12),
                               decoration: BoxDecoration(
-                                color: AppColors.sageHint.withOpacity(0.3),
+                                color:
+                                    AppColors.sageHint.withValues(alpha: 0.3),
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color: AppColors.sage.withOpacity(0.3),
+                                  color: AppColors.sage.withValues(alpha: 0.3),
                                   width: 1,
                                 ),
                               ),
@@ -259,7 +260,7 @@ class ItineraireDetailScreen extends StatelessWidget {
                                         const SizedBox(height: 4),
                                         Text(
                                           site.category,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 12,
                                             color: AppColors.textSecondary,
                                           ),
@@ -306,10 +307,10 @@ class _InfoChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: color.withOpacity(0.3),
+          color: color.withValues(alpha: 0.3),
           width: 1,
         ),
       ),

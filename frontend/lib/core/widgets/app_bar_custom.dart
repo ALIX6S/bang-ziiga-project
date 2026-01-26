@@ -12,7 +12,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   final double elevation;
 
   const AppBarCustom({
-    Key? key,
+    super.key,
     required this.title,
     this.showBackButton = true,
     this.actions,
@@ -21,7 +21,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
     this.centerTitle = true,
     this.leading,
     this.elevation = 0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

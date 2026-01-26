@@ -11,7 +11,7 @@ import 'widgets/site_card.dart';
 import 'site_detail_screen.dart';
 
 class SitesListScreen extends StatefulWidget {
-  const SitesListScreen({Key? key}) : super(key: key);
+  const SitesListScreen({super.key});
 
   @override
   State<SitesListScreen> createState() => _SitesListScreenState();
@@ -105,7 +105,7 @@ class _SitesListScreenState extends State<SitesListScreen> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       '${filteredSites.length} résultat(s) trouvé(s)',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14,
                         color: AppColors.textSecondary,
                       ),

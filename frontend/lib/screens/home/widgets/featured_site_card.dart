@@ -8,10 +8,10 @@ class FeaturedSiteCard extends StatelessWidget {
   final VoidCallback onTap;
 
   const FeaturedSiteCard({
-    Key? key,
+    super.key,
     required this.site,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +52,12 @@ class FeaturedSiteCard extends StatelessWidget {
                     child: Icon(
                       Icons.image,
                       size: 48,
-                      color: AppColors.sage.withOpacity(0.5),
+                      color: AppColors.sage.withValues(alpha: 0.5),
                     ),
                   ),
                 ),
               ),
-              
+
               // Gradient overlay
               Container(
                 height: 200,
@@ -68,12 +68,12 @@ class FeaturedSiteCard extends StatelessWidget {
                     end: Alignment.bottomCenter,
                     colors: [
                       Colors.transparent,
-                      Colors.black.withOpacity(0.7),
+                      Colors.black.withValues(alpha: 0.7),
                     ],
                   ),
                 ),
               ),
-              
+
               // Contenu
               Positioned(
                 bottom: 0,
@@ -91,7 +91,7 @@ class FeaturedSiteCard extends StatelessWidget {
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
-                          color: AppColors.sage.withOpacity(0.9),
+                          color: AppColors.sage.withValues(alpha: 0.9),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         child: Text(
@@ -104,7 +104,7 @@ class FeaturedSiteCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      
+
                       // Nom
                       Text(
                         site.name,
@@ -117,7 +117,7 @@ class FeaturedSiteCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 4),
-                      
+
                       // Localisation
                       Row(
                         children: [
@@ -144,7 +144,7 @@ class FeaturedSiteCard extends StatelessWidget {
                   ),
                 ),
               ),
-              
+
               // Badge "Phare"
               Positioned(
                 top: 12,

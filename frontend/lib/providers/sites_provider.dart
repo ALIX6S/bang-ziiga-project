@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 import '../models/site.dart';
 import '../data/repositories/sites_repository.dart';
 
 enum SitesState { initial, loading, loaded, error }
 
 class SitesProvider with ChangeNotifier {
-  @visibleForTesting
   SitesState _state = SitesState.initial;
-  @visibleForTesting
   List<Site> _sites = [];
-  @visibleForTesting
   List<Site> _featuredSites = [];
   Site? _selectedSite;
   String? _errorMessage;

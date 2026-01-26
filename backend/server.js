@@ -106,10 +106,13 @@ const gracefulShutdown = (server, signal) => {
     
     // Fermeture de la connexion MongoDB
     const mongoose = require('mongoose');
-    mongoose.connection.close(false, () => {
+    mongoose.connection.close().then(() => {
       console.log(' Connexion MongoDB fermée'.green);
       console.log(' Au revoir !\n'.cyan.bold);
       process.exit(0);
+    }).catch((err) => {
+      console.error(' Erreur lors de la fermeture MongoDB:'.red, err.message);
+      process.exit(1);
     });
   });
 

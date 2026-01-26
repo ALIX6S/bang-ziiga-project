@@ -10,7 +10,7 @@ import 'widgets/itineraire_card.dart';
 import 'itineraire_detail_screen.dart';
 
 class ItinerairesListScreen extends StatefulWidget {
-  const ItinerairesListScreen({Key? key}) : super(key: key);
+  const ItinerairesListScreen({super.key});
 
   @override
   State<ItinerairesListScreen> createState() => _ItinerairesListScreenState();

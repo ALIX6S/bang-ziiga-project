@@ -7,7 +7,7 @@ import '../../utils/helpers.dart';
 import '../auth/login_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   Future<void> _handleLogout(BuildContext context) async {
     final confirmed = await Helpers.showConfirmDialog(
@@ -54,7 +54,7 @@ class ProfileScreen extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(32),
               decoration: BoxDecoration(
-                color: AppColors.evergreen.withOpacity(0.1),
+                color: AppColors.evergreen.withValues(alpha: 0.1),
               ),
               child: Column(
                 children: [
@@ -71,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
+                          color: Colors.black.withValues(alpha: 0.1),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
                         ),
@@ -89,7 +89,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  
+
                   // Nom
                   Text(
                     user?.fullName ?? 'Utilisateur',
@@ -100,11 +100,11 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  
+
                   // Email
                   Text(
                     user?.email ?? '',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                       color: AppColors.textSecondary,
                     ),
@@ -131,7 +131,7 @@ class ProfileScreen extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 12),
-                  
+
                   _ProfileOption(
                     icon: Icons.favorite,
                     title: 'Mes favoris',
@@ -144,7 +144,7 @@ class ProfileScreen extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 12),
-                  
+
                   _ProfileOption(
                     icon: Icons.settings,
                     title: 'Paramètres',
@@ -157,7 +157,7 @@ class ProfileScreen extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 12),
-                  
+
                   _ProfileOption(
                     icon: Icons.help,
                     title: 'Aide et support',
@@ -170,7 +170,7 @@ class ProfileScreen extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 12),
-                  
+
                   _ProfileOption(
                     icon: Icons.info,
                     title: 'À propos',
@@ -202,7 +202,7 @@ class ProfileScreen extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 32),
-                  
+
                   // Bouton Déconnexion
                   SizedBox(
                     width: double.infinity,
@@ -253,10 +253,10 @@ class _ProfileOption extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: AppColors.sageHint.withOpacity(0.3),
+          color: AppColors.sageHint.withValues(alpha: 0.3),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: AppColors.sage.withOpacity(0.2),
+            color: AppColors.sage.withValues(alpha: 0.2),
             width: 1,
           ),
         ),
@@ -265,7 +265,7 @@ class _ProfileOption extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: AppColors.sage.withOpacity(0.2),
+                color: AppColors.sage.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(
@@ -290,7 +290,7 @@ class _ProfileOption extends StatelessWidget {
                   const SizedBox(height: 2),
                   Text(
                     subtitle,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
                       color: AppColors.textSecondary,
                     ),

@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import '../../core/config/colors.dart';
 import '../../core/widgets/app_bar_custom.dart';
 
-
 class CultureScreen extends StatefulWidget {
-  const CultureScreen({Key? key}) : super(key: key);
+  const CultureScreen({super.key});
 
   @override
   State<CultureScreen> createState() => _CultureScreenState();
@@ -170,7 +169,7 @@ class _CultureScreenState extends State<CultureScreen>
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: color.withOpacity(0.2),
+                    color: color.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(

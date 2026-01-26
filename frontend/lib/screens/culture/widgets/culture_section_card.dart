@@ -8,10 +8,10 @@ class CultureSectionCard extends StatelessWidget {
   final VoidCallback? onTap;
 
   const CultureSectionCard({
-    Key? key,
+    super.key,
     required this.cultureInfo,
     this.onTap,
-  }) : super(key: key);
+  });
 
   Color _getTypeColor() {
     switch (cultureInfo.type.toLowerCase()) {
@@ -68,12 +68,12 @@ class CultureSectionCard extends StatelessWidget {
                     child: Icon(
                       Icons.image,
                       size: 48,
-                      color: AppColors.sage.withOpacity(0.5),
+                      color: AppColors.sage.withValues(alpha: 0.5),
                     ),
                   ),
                 ),
               ),
-            
+
             // Contenu
             Padding(
               padding: const EdgeInsets.all(16),
@@ -86,7 +86,7 @@ class CultureSectionCard extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: _getTypeColor().withOpacity(0.2),
+                          color: _getTypeColor().withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(
@@ -101,7 +101,7 @@ class CultureSectionCard extends StatelessWidget {
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: _getTypeColor().withOpacity(0.2),
+                          color: _getTypeColor().withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(
@@ -116,7 +116,7 @@ class CultureSectionCard extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 12),
-                  
+
                   // Titre
                   Text(
                     cultureInfo.title,
@@ -127,11 +127,11 @@ class CultureSectionCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  
+
                   // Contenu (extrait)
                   Text(
                     cultureInfo.content,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                       color: AppColors.textSecondary,
                       height: 1.5,
@@ -139,7 +139,7 @@ class CultureSectionCard extends StatelessWidget {
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  
+
                   if (onTap != null) ...[
                     const SizedBox(height: 12),
                     Text(

@@ -8,10 +8,10 @@ class SiteCard extends StatelessWidget {
   final VoidCallback onTap;
 
   const SiteCard({
-    Key? key,
+    super.key,
     required this.site,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -59,10 +59,10 @@ class SiteCard extends StatelessWidget {
                           Icon(
                             Icons.image_not_supported,
                             size: 48,
-                            color: AppColors.sage.withOpacity(0.5),
+                            color: AppColors.sage.withValues(alpha: 0.5),
                           ),
                           const SizedBox(height: 8),
-                          Text(
+                          const Text(
                             'Image non disponible',
                             style: TextStyle(
                               color: AppColors.textSecondary,
@@ -89,7 +89,7 @@ class SiteCard extends StatelessWidget {
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.sage.withOpacity(0.2),
+                        color: AppColors.sage.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: Text(
@@ -130,7 +130,7 @@ class SiteCard extends StatelessWidget {
                         Expanded(
                           child: Text(
                             site.location,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 10,
                               color: AppColors.textSecondary,
                             ),

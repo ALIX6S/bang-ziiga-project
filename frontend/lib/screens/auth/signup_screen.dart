@@ -8,7 +8,7 @@ import '../../utils/validators.dart';
 import '../../utils/helpers.dart';
 
 class SignupScreen extends StatefulWidget {
-  const SignupScreen({Key? key}) : super(key: key);
+  const SignupScreen({super.key});
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -91,7 +91,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text(
+                const Text(
                   'Rejoignez-nous pour découvrir le pays',
                   style: TextStyle(
                     fontSize: 14,

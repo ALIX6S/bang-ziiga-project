@@ -6,7 +6,7 @@ import '../auth/login_screen.dart';
 import '../home/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-    
+
     // Configuration des animations
     _animationController = AnimationController(
       vsync: this,
@@ -43,17 +43,17 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     _animationController.forward();
-    
+
     // Vérifier l'authentification après l'animation
     _checkAuthAndNavigate();
   }
 
   Future<void> _checkAuthAndNavigate() async {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    
+
     // Vérifier le statut d'authentification
     await authProvider.checkAuthStatus();
-    
+
     // Attendre la fin de l'animation
     await Future.delayed(const Duration(milliseconds: 2000));
 
@@ -98,7 +98,7 @@ class _SplashScreenState extends State<SplashScreen>
                     borderRadius: BorderRadius.circular(30),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
+                        color: Colors.black.withValues(alpha: 0.2),
                         blurRadius: 20,
                         offset: const Offset(0, 10),
                       ),
@@ -113,7 +113,7 @@ class _SplashScreenState extends State<SplashScreen>
               ),
             ),
             const SizedBox(height: 32),
-            
+
             // Nom de l'application
             FadeTransition(
               opacity: _fadeAnimation,
@@ -142,7 +142,7 @@ class _SplashScreenState extends State<SplashScreen>
               ),
             ),
             const SizedBox(height: 50),
-            
+
             // Indicateur de chargement
             FadeTransition(
               opacity: _fadeAnimation,

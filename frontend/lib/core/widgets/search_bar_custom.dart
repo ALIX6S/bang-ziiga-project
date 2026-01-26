@@ -9,29 +9,29 @@ class SearchBarCustom extends StatelessWidget {
   final bool showClearButton;
 
   const SearchBarCustom({
-    Key? key,
+    super.key,
     this.hint = 'Rechercher...',
     this.controller,
     this.onChanged,
     this.onClear,
     this.showClearButton = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
-        color: AppColors.sageHint.withOpacity(0.3),
+        color: AppColors.sageHint.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: AppColors.sage.withOpacity(0.3),
+          color: AppColors.sage.withValues(alpha: 0.3),
           width: 1,
         ),
       ),
       child: Row(
         children: [
-          Icon(
+          const Icon(
             Icons.search,
             color: AppColors.sage,
             size: 20,
@@ -47,7 +47,7 @@ class SearchBarCustom extends StatelessWidget {
               ),
               decoration: InputDecoration(
                 hintText: hint,
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   color: AppColors.textHint,
                   fontSize: 14,
                 ),
@@ -61,7 +61,7 @@ class SearchBarCustom extends StatelessWidget {
               controller != null &&
               controller!.text.isNotEmpty)
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.clear,
                 color: AppColors.sage,
                 size: 20,
