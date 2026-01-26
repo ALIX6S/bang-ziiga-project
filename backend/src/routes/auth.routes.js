@@ -10,7 +10,6 @@ const {
 const { protect } = require('../middlewares/auth.middleware');
 const validate = require('../middlewares/validation.middleware');
 
-// Validation pour l'inscription
 const registerValidation = [
   body('fullName')
     .trim()
@@ -32,7 +31,6 @@ const registerValidation = [
     .withMessage('Le mot de passe doit contenir au moins 6 caractères'),
 ];
 
-// Validation pour la connexion
 const loginValidation = [
   body('email')
     .trim()
@@ -44,11 +42,9 @@ const loginValidation = [
   body('password').notEmpty().withMessage('Le mot de passe est requis'),
 ];
 
-// Routes publiques
 router.post('/register', registerValidation, validate, register);
 router.post('/login', loginValidation, validate, login);
 
-// Routes protégées
 router.get('/me', protect, getMe);
 router.post('/logout', protect, logout);
 

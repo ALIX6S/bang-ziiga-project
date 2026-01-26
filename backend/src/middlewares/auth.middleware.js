@@ -1,15 +1,10 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-/**
- * Middleware pour protéger les routes
- * Vérifie la présence et la validité du token JWT
- */
 const protect = async (req, res, next) => {
   try {
     let token;
 
-    // Vérifier si le token est présent dans les headers
     if (
       req.headers.authorization &&
       req.headers.authorization.startsWith('Bearer')
@@ -17,7 +12,6 @@ const protect = async (req, res, next) => {
       token = req.headers.authorization.split(' ')[1];
     }
 
-    // Si pas de token
     if (!token) {
       return res.status(401).json({
         success: false,
@@ -26,10 +20,8 @@ const protect = async (req, res, next) => {
     }
 
     try {
-      // Vérifier et décoder le token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-      // Récupérer l'utilisateur depuis la base de données
       const user = await User.findById(decoded.id).select('-password');
 
       if (!user) {
@@ -46,7 +38,6 @@ const protect = async (req, res, next) => {
         });
       }
 
-      // Attacher l'utilisateur à la requête
       req.user = user;
       next();
     } catch (error) {
@@ -64,10 +55,6 @@ const protect = async (req, res, next) => {
   }
 };
 
-/**
- * Middleware pour vérifier les rôles
- * @param  {...string} roles - Rôles autorisés
- */
 const authorize = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
