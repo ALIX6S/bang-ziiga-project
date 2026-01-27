@@ -33,9 +33,9 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!_formKey.currentState!.validate()) return;
 
     Helpers.hideKeyboard(context);
-    
+
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    
+
     final success = await authProvider.login(
       email: _emailController.text.trim(),
       password: _passwordController.text,
@@ -49,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
         context,
         'Connexion réussie ! Bienvenue ${authProvider.user?.fullName}',
       );
-      
+
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
@@ -75,8 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 40),
-                
-                // Logo et titre
+
                 Center(
                   child: Column(
                     children: [
@@ -114,8 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 48),
-                
-                // Titre Connexion
+
                 const Text(
                   'Connexion',
                   style: TextStyle(
@@ -133,8 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 32),
-                
-                // Champ Email
+
                 CustomTextField(
                   label: 'Email',
                   hint: 'votreemail@exemple.com',
@@ -144,8 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   prefixIcon: Icons.email_outlined,
                 ),
                 const SizedBox(height: 20),
-                
-                // Champ Mot de passe
+
                 CustomTextField(
                   label: 'Mot de passe',
                   hint: 'Entrez votre mot de passe',
@@ -155,8 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   prefixIcon: Icons.lock_outline,
                 ),
                 const SizedBox(height: 16),
-                
-                // Se souvenir de moi
+
                 Row(
                   children: [
                     SizedBox(
@@ -183,8 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 const SizedBox(height: 32),
-                
-                // Bouton Connexion
+
                 Consumer<AuthProvider>(
                   builder: (context, authProvider, child) {
                     return CustomButton(
@@ -195,8 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
                 const SizedBox(height: 24),
-                
-                // Lien vers inscription
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

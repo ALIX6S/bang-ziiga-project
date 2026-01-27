@@ -34,9 +34,9 @@ class _SignupScreenState extends State<SignupScreen> {
     if (!_formKey.currentState!.validate()) return;
 
     Helpers.hideKeyboard(context);
-    
+
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    
+
     final success = await authProvider.register(
       fullName: _fullNameController.text.trim(),
       email: _emailController.text.trim(),
@@ -50,7 +50,7 @@ class _SignupScreenState extends State<SignupScreen> {
         context,
         'Inscription réussie ! Connectez-vous maintenant',
       );
-      
+
       Navigator.of(context).pop();
     } else {
       Helpers.showSnackBar(
@@ -81,7 +81,6 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Titre
                 const Text(
                   'Créer un compte',
                   style: TextStyle(
@@ -99,8 +98,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
                 const SizedBox(height: 32),
-                
-                // Champ Nom complet
+
                 CustomTextField(
                   label: 'Nom complet',
                   hint: 'Ex: Jean Dupont',
@@ -110,8 +108,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   prefixIcon: Icons.person_outline,
                 ),
                 const SizedBox(height: 20),
-                
-                // Champ Email
+
                 CustomTextField(
                   label: 'Email',
                   hint: 'votreemail@exemple.com',
@@ -121,8 +118,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   prefixIcon: Icons.email_outlined,
                 ),
                 const SizedBox(height: 20),
-                
-                // Champ Mot de passe
+
                 CustomTextField(
                   label: 'Mot de passe',
                   hint: 'Minimum 6 caractères',
@@ -132,8 +128,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   prefixIcon: Icons.lock_outline,
                 ),
                 const SizedBox(height: 20),
-                
-                // Champ Confirmation mot de passe
+
                 CustomTextField(
                   label: 'Confirmer le mot de passe',
                   hint: 'Retapez votre mot de passe',
@@ -146,8 +141,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   prefixIcon: Icons.lock_outline,
                 ),
                 const SizedBox(height: 32),
-                
-                // Bouton Inscription
+
                 Consumer<AuthProvider>(
                   builder: (context, authProvider, child) {
                     return CustomButton(
@@ -158,8 +152,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   },
                 ),
                 const SizedBox(height: 24),
-                
-                // Lien vers connexion
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

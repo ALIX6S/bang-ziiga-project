@@ -47,14 +47,12 @@ class _SitesListScreenState extends State<SitesListScreen> {
       ),
       body: Consumer<SitesProvider>(
         builder: (context, sitesProvider, child) {
-          // État de chargement
           if (sitesProvider.isLoading) {
             return const LoadingWidget(
               message: 'Chargement des sites...',
             );
           }
 
-          // État d'erreur
           if (sitesProvider.hasError) {
             return ErrorDisplayWidget(
               message: sitesProvider.errorMessage ?? 'Une erreur est survenue',
@@ -62,7 +60,6 @@ class _SitesListScreenState extends State<SitesListScreen> {
             );
           }
 
-          // État vide
           if (sitesProvider.sites.isEmpty) {
             return const EmptyStateWidget(
               icon: Icons.explore_off,
@@ -71,14 +68,12 @@ class _SitesListScreenState extends State<SitesListScreen> {
             );
           }
 
-          // Filtrer les sites selon la recherche
           final filteredSites = _searchQuery.isEmpty
               ? sitesProvider.sites
               : sitesProvider.searchSites(_searchQuery);
 
           return Column(
             children: [
-              // Barre de recherche
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: SearchBarCustom(
@@ -97,7 +92,6 @@ class _SitesListScreenState extends State<SitesListScreen> {
                 ),
               ),
 
-              // Nombre de résultats
               if (_searchQuery.isNotEmpty)
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -115,7 +109,6 @@ class _SitesListScreenState extends State<SitesListScreen> {
 
               const SizedBox(height: 8),
 
-              // Liste des sites
               Expanded(
                 child: filteredSites.isEmpty
                     ? const EmptyStateWidget(

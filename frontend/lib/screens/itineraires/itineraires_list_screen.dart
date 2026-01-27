@@ -37,14 +37,12 @@ class _ItinerairesListScreenState extends State<ItinerairesListScreen> {
       ),
       body: Consumer<ItinerairesProvider>(
         builder: (context, provider, child) {
-          // État de chargement
           if (provider.isLoading) {
             return const LoadingWidget(
               message: 'Chargement des itinéraires...',
             );
           }
 
-          // État d'erreur
           if (provider.hasError) {
             return ErrorDisplayWidget(
               message: provider.errorMessage ?? 'Une erreur est survenue',
@@ -52,7 +50,6 @@ class _ItinerairesListScreenState extends State<ItinerairesListScreen> {
             );
           }
 
-          // État vide
           if (provider.itineraires.isEmpty) {
             return const EmptyStateWidget(
               icon: Icons.route_outlined,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../core/config/colors.dart';
+import '../../core/widgets/image_loading_placeholder.dart';
 import '../../models/itineraire.dart';
+import '../../models/site.dart';
 import '../sites/site_detail_screen.dart';
 
 class ItineraireDetailScreen extends StatelessWidget {
@@ -12,26 +14,12 @@ class ItineraireDetailScreen extends StatelessWidget {
     required this.itineraire,
   });
 
-  Color _getDifficultyColor() {
-    switch (itineraire.difficulty.toLowerCase()) {
-      case 'facile':
-        return AppColors.sage;
-      case 'moyen':
-        return AppColors.moss;
-      case 'intense':
-        return AppColors.evergreen;
-      default:
-        return AppColors.moss;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
-          // AppBar avec image
           SliverAppBar(
             expandedHeight: 280,
             pinned: true,
@@ -58,16 +46,7 @@ class ItineraireDetailScreen extends StatelessWidget {
               background: CachedNetworkImage(
                 imageUrl: itineraire.imageUrl,
                 fit: BoxFit.cover,
-                placeholder: (context, url) => Container(
-                  color: AppColors.sageHint,
-                  child: const Center(
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        AppColors.sage,
-                      ),
-                    ),
-                  ),
-                ),
+                placeholder: (context, url) => const ImageLoadingPlaceholder(),
                 errorWidget: (context, url, error) => Container(
                   color: AppColors.sageHint,
                   child: const Icon(
@@ -80,7 +59,6 @@ class ItineraireDetailScreen extends StatelessWidget {
             ),
           ),
 
-          // Contenu
           SliverToBoxAdapter(
             child: Container(
               decoration: const BoxDecoration(
@@ -95,7 +73,6 @@ class ItineraireDetailScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Nom de l'itinéraire
                     Text(
                       itineraire.name,
                       style: const TextStyle(
@@ -106,7 +83,6 @@ class ItineraireDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
 
-                    // Informations clés
                     Row(
                       children: [
                         _InfoChip(
@@ -118,7 +94,8 @@ class ItineraireDetailScreen extends StatelessWidget {
                         _InfoChip(
                           icon: Icons.trending_up,
                           label: itineraire.difficulty,
-                          color: _getDifficultyColor(),
+                          color:
+                              AppColors.difficultyColor(itineraire.difficulty),
                         ),
                         if (itineraire.distance != null) ...[
                           const SizedBox(width: 12),
@@ -132,14 +109,12 @@ class ItineraireDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
 
-                    // Divider
                     Divider(
                       color: AppColors.sage.withValues(alpha: 0.2),
                       thickness: 1,
                     ),
                     const SizedBox(height: 24),
 
-                    // Description
                     const Text(
                       'Description du parcours',
                       style: TextStyle(
@@ -159,7 +134,6 @@ class ItineraireDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 32),
 
-                    // Sites inclus
                     Row(
                       children: [
                         const Text(
@@ -193,7 +167,6 @@ class ItineraireDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
 
-                    // Liste des sites
                     if (itineraire.sites.isNotEmpty)
                       ListView.separated(
                         shrinkWrap: true,
@@ -201,82 +174,10 @@ class ItineraireDetailScreen extends StatelessWidget {
                         itemCount: itineraire.sites.length,
                         separatorBuilder: (context, index) =>
                             const SizedBox(height: 12),
-                        itemBuilder: (context, index) {
-                          final site = itineraire.sites[index];
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      SiteDetailScreen(site: site),
-                                ),
-                              );
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(12),
-                              decoration: BoxDecoration(
-                                color:
-                                    AppColors.sageHint.withValues(alpha: 0.3),
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(
-                                  color: AppColors.sage.withValues(alpha: 0.3),
-                                  width: 1,
-                                ),
-                              ),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    width: 40,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      color: AppColors.sage,
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        '${index + 1}',
-                                        style: const TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          site.name,
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                            color: AppColors.textPrimary,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 4),
-                                        Text(
-                                          site.category,
-                                          style: const TextStyle(
-                                            fontSize: 12,
-                                            color: AppColors.textSecondary,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const Icon(
-                                    Icons.chevron_right,
-                                    color: AppColors.sage,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
+                        itemBuilder: (context, index) => _SiteStepTile(
+                          site: itineraire.sites[index],
+                          position: index + 1,
+                        ),
                       ),
                     const SizedBox(height: 24),
                   ],
@@ -290,7 +191,90 @@ class ItineraireDetailScreen extends StatelessWidget {
   }
 }
 
-// Widget pour afficher les infos clés
+class _SiteStepTile extends StatelessWidget {
+  final Site site;
+  final int position;
+
+  const _SiteStepTile({
+    required this.site,
+    required this.position,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => SiteDetailScreen(site: site),
+          ),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: AppColors.sageHint.withValues(alpha: 0.3),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: AppColors.sage.withValues(alpha: 0.3),
+            width: 1,
+          ),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: AppColors.sage,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Center(
+                child: Text(
+                  '$position',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    site.name,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    site.category,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Icon(
+              Icons.chevron_right,
+              color: AppColors.sage,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _InfoChip extends StatelessWidget {
   final IconData icon;
   final String label;

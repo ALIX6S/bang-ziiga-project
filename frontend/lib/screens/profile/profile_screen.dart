@@ -49,7 +49,6 @@ class ProfileScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Header avec informations utilisateur
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(32),
@@ -58,7 +57,6 @@ class ProfileScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  // Avatar
                   Container(
                     width: 100,
                     height: 100,
@@ -90,7 +88,6 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
 
-                  // Nom
                   Text(
                     user?.fullName ?? 'Utilisateur',
                     style: const TextStyle(
@@ -101,7 +98,6 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
 
-                  // Email
                   Text(
                     user?.email ?? '',
                     style: const TextStyle(
@@ -114,7 +110,6 @@ class ProfileScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // Options du profil
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
@@ -203,7 +198,6 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 32),
 
-                  // Bouton Déconnexion
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton.icon(
@@ -231,7 +225,6 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-// Widget option du profil
 class _ProfileOption extends StatelessWidget {
   final IconData icon;
   final String title;

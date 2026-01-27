@@ -30,10 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
     await sitesProvider.loadFeaturedSites();
   }
 
-  Future<void> _handleRefresh() async {
-    await _loadData();
-  }
-
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
@@ -65,14 +61,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: _handleRefresh,
+        onRefresh: _loadData,
         color: AppColors.evergreen,
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header avec message de bienvenue
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(24),
@@ -87,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Bonjour ${user?.fullName.split(' ').first ?? 'Voyageur'} ',
+                      'Bonjour ${user?.fullName.split(' ').first ?? 'Voyageur'}',
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -107,7 +102,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 24),
 
-              // Boutons d'accès rapide
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Row(
@@ -162,7 +156,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 32),
 
-              // Sites phares
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: SectionTitle(
@@ -180,7 +173,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 16),
 
-              // Liste des sites phares
               Consumer<SitesProvider>(
                 builder: (context, sitesProvider, child) {
                   if (sitesProvider.featuredSites.isEmpty) {
@@ -230,7 +222,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-// Widget bouton d'accès rapide
 class _QuickAccessButton extends StatelessWidget {
   final IconData icon;
   final String label;

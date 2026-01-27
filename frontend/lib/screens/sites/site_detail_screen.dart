@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../core/config/colors.dart';
+import '../../core/widgets/image_loading_placeholder.dart';
 import '../../models/site.dart';
 
 class SiteDetailScreen extends StatelessWidget {
@@ -17,7 +18,6 @@ class SiteDetailScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
-          // AppBar avec image
           SliverAppBar(
             expandedHeight: 300,
             pinned: true,
@@ -46,16 +46,8 @@ class SiteDetailScreen extends StatelessWidget {
                 child: CachedNetworkImage(
                   imageUrl: site.imageUrl,
                   fit: BoxFit.cover,
-                  placeholder: (context, url) => Container(
-                    color: AppColors.sageHint,
-                    child: const Center(
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          AppColors.sage,
-                        ),
-                      ),
-                    ),
-                  ),
+                  placeholder: (context, url) =>
+                      const ImageLoadingPlaceholder(),
                   errorWidget: (context, url, error) => Container(
                     color: AppColors.sageHint,
                     child: Icon(
@@ -69,7 +61,6 @@ class SiteDetailScreen extends StatelessWidget {
             ),
           ),
 
-          // Contenu
           SliverToBoxAdapter(
             child: Container(
               decoration: const BoxDecoration(
@@ -84,7 +75,6 @@ class SiteDetailScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Catégorie
                     Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 12,
@@ -105,7 +95,6 @@ class SiteDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
 
-                    // Nom du site
                     Text(
                       site.name,
                       style: const TextStyle(
@@ -116,7 +105,6 @@ class SiteDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
 
-                    // Localisation
                     Row(
                       children: [
                         const Icon(
@@ -138,14 +126,12 @@ class SiteDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
 
-                    // Divider
                     Divider(
                       color: AppColors.sage.withValues(alpha: 0.2),
                       thickness: 1,
                     ),
                     const SizedBox(height: 24),
 
-                    // Section Description
                     const Text(
                       'À propos',
                       style: TextStyle(
@@ -156,7 +142,6 @@ class SiteDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
 
-                    // Description
                     Text(
                       site.description,
                       style: const TextStyle(
@@ -167,7 +152,6 @@ class SiteDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 32),
 
-                    // Informations complémentaires
                     if (site.isFeatured)
                       Container(
                         padding: const EdgeInsets.all(16),

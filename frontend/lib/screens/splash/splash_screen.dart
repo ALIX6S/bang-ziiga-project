@@ -22,7 +22,6 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
 
-    // Configuration des animations
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1500),
@@ -44,22 +43,18 @@ class _SplashScreenState extends State<SplashScreen>
 
     _animationController.forward();
 
-    // Vérifier l'authentification après l'animation
     _checkAuthAndNavigate();
   }
 
   Future<void> _checkAuthAndNavigate() async {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
-    // Vérifier le statut d'authentification
     await authProvider.checkAuthStatus();
 
-    // Attendre la fin de l'animation
     await Future.delayed(const Duration(milliseconds: 2000));
 
     if (!mounted) return;
 
-    // Naviguer selon l'état d'authentification
     if (authProvider.isAuthenticated) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -85,7 +80,6 @@ class _SplashScreenState extends State<SplashScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Logo animé
             FadeTransition(
               opacity: _fadeAnimation,
               child: ScaleTransition(
@@ -114,7 +108,6 @@ class _SplashScreenState extends State<SplashScreen>
             ),
             const SizedBox(height: 32),
 
-            // Nom de l'application
             FadeTransition(
               opacity: _fadeAnimation,
               child: const Column(
@@ -143,7 +136,6 @@ class _SplashScreenState extends State<SplashScreen>
             ),
             const SizedBox(height: 50),
 
-            // Indicateur de chargement
             FadeTransition(
               opacity: _fadeAnimation,
               child: const SizedBox(
