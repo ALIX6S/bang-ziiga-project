@@ -15,14 +15,12 @@ class AuthProvider with ChangeNotifier {
   User? _user;
   String? _errorMessage;
 
-  // Getters
   AuthState get state => _state;
   User? get user => _user;
   String? get errorMessage => _errorMessage;
   bool get isAuthenticated => _state == AuthState.authenticated;
   bool get isLoading => _state == AuthState.loading;
 
-  /// Initialiser l'état d'authentification au démarrage
   Future<void> checkAuthStatus() async {
     if (AuthService.isLoggedIn()) {
       _user = AuthService.getCurrentUser();
@@ -36,7 +34,6 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  /// Inscription
   Future<bool> register({
     required String fullName,
     required String email,
@@ -59,7 +56,6 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  /// Connexion
   Future<bool> login({
     required String email,
     required String password,
@@ -83,7 +79,6 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  /// Déconnexion
   Future<void> logout() async {
     _setState(AuthState.loading);
     await AuthService.logout();
@@ -91,14 +86,12 @@ class AuthProvider with ChangeNotifier {
     _setState(AuthState.unauthenticated);
   }
 
-  /// Changer l'état
   void _setState(AuthState newState, {String? error}) {
     _state = newState;
     _errorMessage = error;
     notifyListeners();
   }
 
-  /// Réinitialiser l'erreur
   void clearError() {
     _errorMessage = null;
     if (_state == AuthState.error) {

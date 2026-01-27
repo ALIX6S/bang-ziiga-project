@@ -4,7 +4,6 @@ import '../../models/api_response.dart';
 import '../../services/api_service.dart';
 
 class SitesRepository {
-  /// Récupérer tous les sites
   static Future<ApiResponse<List<Site>>> getAllSites() async {
     try {
       final response = await ApiService.get(ApiConstants.sites);
@@ -27,7 +26,6 @@ class SitesRepository {
     }
   }
 
-  /// Récupérer un site par ID
   static Future<ApiResponse<Site>> getSiteById(String id) async {
     try {
       final response = await ApiService.get(ApiConstants.siteDetail(int.parse(id)));
@@ -48,7 +46,6 @@ class SitesRepository {
     }
   }
 
-  /// Récupérer les sites phares (featured)
   static Future<ApiResponse<List<Site>>> getFeaturedSites() async {
     try {
       final response = await ApiService.get('${ApiConstants.sites}/featured');
@@ -68,7 +65,7 @@ class SitesRepository {
               .toList();
           return ApiResponse.success(data: featuredSites);
         }
-        
+
         return ApiResponse.error(
           message: 'Impossible de charger les sites phares',
         );
@@ -85,7 +82,7 @@ class SitesRepository {
           return ApiResponse.success(data: featuredSites);
         }
       } catch (_) {}
-      
+
       return ApiResponse.error(
         message: e.toString().replaceAll('Exception: ', ''),
       );

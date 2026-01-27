@@ -19,7 +19,6 @@ class Site {
     this.createdAt,
   });
 
-  /// Conversion depuis JSON
   factory Site.fromJson(Map<String, dynamic> json) {
     return Site(
       id: json['_id'] ?? json['id'] ?? '',
@@ -29,13 +28,12 @@ class Site {
       location: json['location'] ?? '',
       imageUrl: json['imageUrl'] ?? '',
       isFeatured: json['isFeatured'] ?? false,
-      createdAt: json['createdAt'] != null 
-          ? DateTime.parse(json['createdAt']) 
+      createdAt: json['createdAt'] != null
+          ? DateTime.parse(json['createdAt'])
           : null,
     );
   }
 
-  /// Conversion vers JSON
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -49,7 +47,6 @@ class Site {
     };
   }
 
-  /// Copie avec modifications
   Site copyWith({
     String? id,
     String? name,
@@ -72,7 +69,6 @@ class Site {
     );
   }
 
-  /// Obtenir la couleur selon la catégorie
   String getCategoryColor() {
     switch (category.toLowerCase()) {
       case 'monument':

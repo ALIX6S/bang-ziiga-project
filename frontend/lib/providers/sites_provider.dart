@@ -11,7 +11,6 @@ class SitesProvider with ChangeNotifier {
   Site? _selectedSite;
   String? _errorMessage;
 
-  // Getters
   SitesState get state => _state;
   List<Site> get sites => _sites;
   List<Site> get featuredSites => _featuredSites;
@@ -20,7 +19,6 @@ class SitesProvider with ChangeNotifier {
   bool get isLoading => _state == SitesState.loading;
   bool get hasError => _state == SitesState.error;
 
-  /// Charger tous les sites
   Future<void> loadSites() async {
     _setState(SitesState.loading);
 
@@ -34,7 +32,6 @@ class SitesProvider with ChangeNotifier {
     }
   }
 
-  /// Charger les sites phares
   Future<void> loadFeaturedSites() async {
     final response = await SitesRepository.getFeaturedSites();
 
@@ -44,7 +41,6 @@ class SitesProvider with ChangeNotifier {
     }
   }
 
-  /// Charger un site par ID
   Future<void> loadSiteById(String id) async {
     _setState(SitesState.loading);
 
@@ -58,20 +54,17 @@ class SitesProvider with ChangeNotifier {
     }
   }
 
-  /// Sélectionner un site
   void selectSite(Site site) {
     _selectedSite = site;
     notifyListeners();
   }
 
-  /// Filtrer les sites par catégorie
   List<Site> filterByCategory(String category) {
     return _sites
         .where((site) => site.category.toLowerCase() == category.toLowerCase())
         .toList();
   }
 
-  /// Rechercher des sites
   List<Site> searchSites(String query) {
     if (query.isEmpty) return _sites;
 
@@ -83,20 +76,17 @@ class SitesProvider with ChangeNotifier {
     }).toList();
   }
 
-  /// Changer l'état
   void _setState(SitesState newState, {String? error}) {
     _state = newState;
     _errorMessage = error;
     notifyListeners();
   }
 
-  /// Méthode pour changer l'état en test
   @visibleForTesting
   void setStateForTesting(SitesState newState, {String? error}) {
     _setState(newState, error: error);
   }
 
-  /// Réinitialiser l'erreur
   void clearError() {
     _errorMessage = null;
     if (_state == SitesState.error) {
@@ -104,13 +94,11 @@ class SitesProvider with ChangeNotifier {
     }
   }
 
-  /// Méthode pour définir les sites en test
   @visibleForTesting
   void setSitesForTesting(List<Site> sites) {
     _sites = sites;
   }
 
-  /// Rafraîchir les données
   Future<void> refresh() async {
     await loadSites();
     await loadFeaturedSites();

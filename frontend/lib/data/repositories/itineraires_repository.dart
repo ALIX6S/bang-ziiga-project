@@ -4,7 +4,6 @@ import '../../models/api_response.dart';
 import '../../services/api_service.dart';
 
 class ItinerairesRepository {
-  /// Récupérer tous les itinéraires
   static Future<ApiResponse<List<Itineraire>>> getAllItineraires() async {
     try {
       final response = await ApiService.get(ApiConstants.itineraires);
@@ -29,7 +28,6 @@ class ItinerairesRepository {
     }
   }
 
-  /// Récupérer un itinéraire par ID
   static Future<ApiResponse<Itineraire>> getItineraireById(String id) async {
     try {
       final response = await ApiService.get(

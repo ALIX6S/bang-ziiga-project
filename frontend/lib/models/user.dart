@@ -13,22 +13,20 @@ class User {
     this.updatedAt,
   });
 
-  /// Conversion depuis JSON
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       id: json['_id'] ?? json['id'] ?? '',
       fullName: json['fullName'] ?? '',
       email: json['email'] ?? '',
-      createdAt: json['createdAt'] != null 
-          ? DateTime.parse(json['createdAt']) 
+      createdAt: json['createdAt'] != null
+          ? DateTime.parse(json['createdAt'])
           : null,
-      updatedAt: json['updatedAt'] != null 
-          ? DateTime.parse(json['updatedAt']) 
+      updatedAt: json['updatedAt'] != null
+          ? DateTime.parse(json['updatedAt'])
           : null,
     );
   }
 
-  /// Conversion vers JSON
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -39,7 +37,6 @@ class User {
     };
   }
 
-  /// Copie avec modifications
   User copyWith({
     String? id,
     String? fullName,

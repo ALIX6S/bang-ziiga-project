@@ -7,7 +7,7 @@ class Itineraire {
   final String duration; // Ex: "2h30", "1 journée"
   final String difficulty; // facile, moyen, intense
   final String? distance; // Ex: "5 km"
-  final List<Site> sites; // Sites inclus dans l'itinéraire
+  final List<Site> sites;
   final String imageUrl;
   final DateTime? createdAt;
 
@@ -23,7 +23,6 @@ class Itineraire {
     this.createdAt,
   });
 
-  /// Conversion depuis JSON
   factory Itineraire.fromJson(Map<String, dynamic> json) {
     List<Site> sitesList = [];
     if (json['sites'] != null) {
@@ -41,13 +40,12 @@ class Itineraire {
       distance: json['distance'],
       sites: sitesList,
       imageUrl: json['imageUrl'] ?? '',
-      createdAt: json['createdAt'] != null 
-          ? DateTime.parse(json['createdAt']) 
+      createdAt: json['createdAt'] != null
+          ? DateTime.parse(json['createdAt'])
           : null,
     );
   }
 
-  /// Conversion vers JSON
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -62,34 +60,5 @@ class Itineraire {
     };
   }
 
-  /// Nombre de sites dans l'itinéraire
   int get sitesCount => sites.length;
-
-  /// Couleur selon la difficulté
-  String getDifficultyColor() {
-    switch (difficulty.toLowerCase()) {
-      case 'facile':
-        return '#8EA58C'; // sage - vert clair
-      case 'moyen':
-        return '#738A6E'; // moss - vert moyen
-      case 'intense':
-        return '#344C3D'; // evergreen - vert foncé
-      default:
-        return '#738A6E'; // moss par défaut
-    }
-  }
-
-  /// Icône selon la difficulté
-  String getDifficultyIcon() {
-    switch (difficulty.toLowerCase()) {
-      case 'facile':
-        return '😊'; // ou utiliser Icons.sentiment_satisfied
-      case 'moyen':
-        return '💪'; // ou utiliser Icons.fitness_center
-      case 'intense':
-        return '🔥'; // ou utiliser Icons.local_fire_department
-      default:
-        return '📍';
-    }
-  }
 }

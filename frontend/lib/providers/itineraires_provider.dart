@@ -10,7 +10,6 @@ class ItinerairesProvider with ChangeNotifier {
   Itineraire? _selectedItineraire;
   String? _errorMessage;
 
-  // Getters
   ItinerairesState get state => _state;
   List<Itineraire> get itineraires => _itineraires;
   Itineraire? get selectedItineraire => _selectedItineraire;
@@ -18,7 +17,6 @@ class ItinerairesProvider with ChangeNotifier {
   bool get isLoading => _state == ItinerairesState.loading;
   bool get hasError => _state == ItinerairesState.error;
 
-  /// Charger tous les itinéraires
   Future<void> loadItineraires() async {
     _setState(ItinerairesState.loading);
 
@@ -32,7 +30,6 @@ class ItinerairesProvider with ChangeNotifier {
     }
   }
 
-  /// Charger un itinéraire par ID
   Future<void> loadItineraireById(String id) async {
     _setState(ItinerairesState.loading);
 
@@ -46,13 +43,11 @@ class ItinerairesProvider with ChangeNotifier {
     }
   }
 
-  /// Sélectionner un itinéraire
   void selectItineraire(Itineraire itineraire) {
     _selectedItineraire = itineraire;
     notifyListeners();
   }
 
-  /// Filtrer par difficulté
   List<Itineraire> filterByDifficulty(String difficulty) {
     return _itineraires
         .where((itineraire) =>
@@ -60,7 +55,6 @@ class ItinerairesProvider with ChangeNotifier {
         .toList();
   }
 
-  /// Obtenir les itinéraires par difficulté groupés
   Map<String, List<Itineraire>> groupByDifficulty() {
     return {
       'facile': filterByDifficulty('facile'),
@@ -69,7 +63,6 @@ class ItinerairesProvider with ChangeNotifier {
     };
   }
 
-  /// Rechercher des itinéraires
   List<Itineraire> searchItineraires(String query) {
     if (query.isEmpty) return _itineraires;
 
@@ -80,14 +73,12 @@ class ItinerairesProvider with ChangeNotifier {
     }).toList();
   }
 
-  /// Changer l'état
   void _setState(ItinerairesState newState, {String? error}) {
     _state = newState;
     _errorMessage = error;
     notifyListeners();
   }
 
-  /// Réinitialiser l'erreur
   void clearError() {
     _errorMessage = null;
     if (_state == ItinerairesState.error) {
@@ -95,7 +86,6 @@ class ItinerairesProvider with ChangeNotifier {
     }
   }
 
-  /// Rafraîchir les données
   Future<void> refresh() async {
     await loadItineraires();
   }
