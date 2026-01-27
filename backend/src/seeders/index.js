@@ -2,24 +2,21 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const colors = require('colors');
 
-// Modèles
 const User = require('../models/User');
 const Site = require('../models/Site');
 const Itineraire = require('../models/Itineraire');
 const CultureInfo = require('../models/CultureInfo');
 
-// Connexion à MongoDB
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
-    console.log(' MongoDB connecté'.green.bold);
+    console.log('MongoDB connecté'.green.bold);
   } catch (error) {
-    console.error(' Erreur de connexion:', error);
+    console.error('Erreur de connexion:', error);
     process.exit(1);
   }
 };
 
-// Données de test
 const users = [
   {
     fullName: 'Admin User',
@@ -28,9 +25,9 @@ const users = [
     role: 'admin',
   },
   {
-    fullName: 'Jean Kaboré',
-    email: 'jean@example.com',
-    password: 'test123',
+    fullName: 'Alix VEBAMBA',
+    email: 'alix.vebamba@bangziiga.com',
+    password: 'Alix2026!',
     role: 'user',
   },
 ];
@@ -124,80 +121,71 @@ const cultureInfos = [
   },
 ];
 
-// Fonction de seeding
+// Les itinéraires référencent les sites: ils sont construits après l'insertion
+// des sites pour disposer de leurs _id.
+const buildItineraires = (createdSites) => [
+  {
+    name: 'Découverte de Ouagadougou',
+    description: 'Un parcours complet à travers les sites emblématiques de la capitale burkinabè. Idéal pour une première visite de la ville.',
+    duration: '4 heures',
+    difficulty: 'facile',
+    distance: '8 km',
+    sites: [createdSites[0]._id, createdSites[1]._id, createdSites[2]._id],
+    imageUrl: 'https://picsum.photos/seed/itineraire1/400/300',
+  },
+  {
+    name: 'Circuit Culturel et Spirituel',
+    description: 'Immersion dans le patrimoine religieux et culturel de Ouagadougou avec la visite de lieux emblématiques.',
+    duration: '3 heures',
+    difficulty: 'facile',
+    distance: '5 km',
+    sites: [createdSites[3]._id, createdSites[1]._id, createdSites[5]._id],
+    imageUrl: 'https://picsum.photos/seed/itineraire2/400/300',
+  },
+  {
+    name: 'Art et Nature',
+    description: 'Combinaison parfaite entre art contemporain et nature avec la visite du parc et des sculptures de Laongo.',
+    duration: '6 heures',
+    difficulty: 'moyen',
+    distance: '65 km',
+    sites: [createdSites[2]._id, createdSites[4]._id],
+    imageUrl: 'https://picsum.photos/seed/itineraire3/400/300',
+  },
+];
+
 const seedDatabase = async () => {
   try {
     await connectDB();
 
-    console.log('  Suppression des données existantes...'.yellow);
+    console.log('Suppression des données existantes...'.yellow);
     await User.deleteMany();
     await Site.deleteMany();
     await Itineraire.deleteMany();
     await CultureInfo.deleteMany();
-    console.log(' Données supprimées'.green);
+    console.log('Données supprimées'.green);
 
-    console.log(' Création des utilisateurs...'.yellow);
     const createdUsers = await User.create(users);
-    console.log(` ${createdUsers.length} utilisateurs créés`.green);
+    console.log(`${createdUsers.length} utilisateurs créés`.green);
 
-    console.log('  Création des sites...'.yellow);
     const createdSites = await Site.create(sites);
-    console.log(` ${createdSites.length} sites créés`.green);
+    console.log(`${createdSites.length} sites créés`.green);
 
-    console.log('  Création des itinéraires...'.yellow);
-    const itineraires = [
-      {
-        name: 'Découverte de Ouagadougou',
-        description: 'Un parcours complet à travers les sites emblématiques de la capitale burkinabè. Idéal pour une première visite de la ville.',
-        duration: '4 heures',
-        difficulty: 'facile',
-        distance: '8 km',
-        sites: [createdSites[0]._id, createdSites[1]._id, createdSites[2]._id],
-        imageUrl: 'https://picsum.photos/seed/itineraire1/400/300',
-      },
-      {
-        name: 'Circuit Culturel et Spirituel',
-        description: 'Immersion dans le patrimoine religieux et culturel de Ouagadougou avec la visite de lieux emblématiques.',
-        duration: '3 heures',
-        difficulty: 'facile',
-        distance: '5 km',
-        sites: [createdSites[3]._id, createdSites[1]._id, createdSites[5]._id],
-        imageUrl: 'https://picsum.photos/seed/itineraire2/400/300',
-      },
-      {
-        name: 'Art et Nature',
-        description: 'Combinaison parfaite entre art contemporain et nature avec la visite du parc et des sculptures de Laongo.',
-        duration: '6 heures',
-        difficulty: 'moyen',
-        distance: '65 km',
-        sites: [createdSites[2]._id, createdSites[4]._id],
-        imageUrl: 'https://picsum.photos/seed/itineraire3/400/300',
-      },
-    ];
-    const createdItineraires = await Itineraire.create(itineraires);
-    console.log(` ${createdItineraires.length} itinéraires créés`.green);
+    const createdItineraires = await Itineraire.create(buildItineraires(createdSites));
+    console.log(`${createdItineraires.length} itinéraires créés`.green);
 
-    console.log(' Création des infos culturelles...'.yellow);
     const createdCulture = await CultureInfo.create(cultureInfos);
-    console.log(` ${createdCulture.length} infos culturelles créées`.green);
+    console.log(`${createdCulture.length} infos culturelles créées`.green);
 
-    console.log('\n Seeding terminé avec succès !'.green.bold);
-    console.log('\n Résumé:'.cyan.bold);
-    console.log(`   - Utilisateurs: ${createdUsers.length}`.cyan);
-    console.log(`   - Sites: ${createdSites.length}`.cyan);
-    console.log(`   - Itinéraires: ${createdItineraires.length}`.cyan);
-    console.log(`   - Infos culturelles: ${createdCulture.length}`.cyan);
-    
-    console.log('\n Compte Admin:'.yellow.bold);
+    console.log('\nSeeding terminé avec succès'.green.bold);
+    console.log('\nCompte Admin:'.yellow.bold);
     console.log('   Email: admin@bangziiga.com'.yellow);
     console.log('   Password: admin123'.yellow);
 
     process.exit(0);
   } catch (error) {
-    console.error(' Erreur lors du seeding:'.red.bold, error);
+    console.error('Erreur lors du seeding:'.red.bold, error);
     process.exit(1);
   }
 };
 
-// Lancer le seeding
 seedDatabase();
