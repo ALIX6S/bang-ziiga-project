@@ -1,10 +1,10 @@
-#  Bãng Zĩiga - Backend API
+# Bãng Zĩiga - Backend API
 
 API REST pour l'application mobile de tourisme local Bãng Zĩiga.
 
 ---
 
-##  Démarrage Rapide
+## Démarrage Rapide
 
 ### Prérequis
 
@@ -41,7 +41,7 @@ Le serveur démarre sur `http://localhost:3000`
 
 ---
 
-##  Structure du Projet
+## Structure du Projet
 
 ```
 backend/
@@ -51,7 +51,6 @@ backend/
 │   ├── controllers/     # Logique métier
 │   ├── routes/          # Routes Express
 │   ├── middlewares/     # Middlewares
-│   ├── services/        # Services métier
 │   ├── utils/           # Utilitaires
 │   └── seeders/         # Données de test
 ├── uploads/             # Fichiers uploadés
@@ -62,7 +61,7 @@ backend/
 
 ---
 
-##  Endpoints API
+## Endpoints API
 
 ### Base URL
 ```
@@ -120,7 +119,7 @@ https://bang-ziiga-project.onrender.com/api/v1
 
 ---
 
-##  Authentification
+## Authentification
 
 L'API utilise JWT (JSON Web Tokens) pour l'authentification.
 
@@ -145,7 +144,7 @@ Authorization: Bearer <votre_token_ici>
 
 ---
 
-##  Tests
+## Tests
 
 ### Tester avec cURL
 
@@ -170,7 +169,7 @@ curl -X POST http://localhost:3000/api/v1/auth/login \
 
 ---
 
-##  Base de Données
+## Base de Données
 
 ### MongoDB Local
 
@@ -197,19 +196,17 @@ show collections
 
 ---
 
-##  Scripts NPM
+## Scripts NPM
 
 | Script | Commande | Description |
 |--------|----------|-------------|
 | Développement | `npm run dev` | Lance le serveur avec nodemon |
 | Production | `npm start` | Lance le serveur en production |
 | Seed | `npm run seed` | Peuple la BDD avec des données de test |
-| Clear | `npm run seed:clear` | Vide la base de données |
-| Tests | `npm test` | Lance les tests |
 
 ---
 
-##  Variables d'Environnement
+## Variables d'Environnement
 
 Fichier `.env` requis :
 
@@ -225,7 +222,7 @@ CORS_ORIGIN=*
 
 ---
 
-##  Compte Admin par Défaut
+## Compte Admin par Défaut
 
 Après avoir exécuté `npm run seed` :
 
@@ -236,7 +233,7 @@ Après avoir exécuté `npm run seed` :
 
 ---
 
-##  Gestion des Erreurs
+## Gestion des Erreurs
 
 L'API retourne des réponses JSON standardisées :
 
@@ -268,12 +265,12 @@ L'API retourne des réponses JSON standardisées :
 
 ---
 
-##  Licence
+## Licence
 
 Ce projet est développé dans un cadre pédagogique.
 
 ---
 
-##  Support
+## Support
 
 Pour toute question : alixcarinestudies@gmail.com
