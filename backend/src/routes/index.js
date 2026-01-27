@@ -1,17 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
-// Import des routes
 const authRoutes = require('./auth.routes');
 const sitesRoutes = require('./sites.routes');
 const itinerairesRoutes = require('./itineraires.routes');
 const cultureRoutes = require('./culture.routes');
 
-// Documentation API - Route racine
 router.get('/', (req, res) => {
   res.status(200).json({
     success: true,
-    message: 'Bienvenue sur l\'API Bãng Zĩiga - Tourisme Local 🌍',
+    message: 'Bienvenue sur l\'API Bãng Zĩiga - Tourisme Local',
     version: process.env.API_VERSION || 'v1',
     documentation: {
       auth: {
@@ -98,11 +96,10 @@ router.get('/', (req, res) => {
         },
       },
     },
-    status: 'API opérationnelle ✅',
+    status: 'API opérationnelle',
   });
 });
 
-// Montage des routes
 router.use('/auth', authRoutes);
 router.use('/sites', sitesRoutes);
 router.use('/itineraires', itinerairesRoutes);
