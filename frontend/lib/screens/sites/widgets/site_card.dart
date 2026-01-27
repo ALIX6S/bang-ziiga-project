@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../../models/site.dart';
 import '../../../core/config/colors.dart';
+import '../../../core/widgets/image_loading_placeholder.dart';
 
 class SiteCard extends StatelessWidget {
   final Site site;
@@ -27,7 +28,6 @@ class SiteCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Image
               ClipRRect(
                 borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(16),
@@ -39,17 +39,8 @@ class SiteCard extends StatelessWidget {
                     height: 100,
                     width: double.infinity,
                     fit: BoxFit.cover,
-                    placeholder: (context, url) => Container(
-                      height: 100,
-                      color: AppColors.sageHint,
-                      child: const Center(
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            AppColors.sage,
-                          ),
-                        ),
-                      ),
-                    ),
+                    placeholder: (context, url) =>
+                        const ImageLoadingPlaceholder(height: 100),
                     errorWidget: (context, url, error) => Container(
                       height: 100,
                       color: AppColors.sageHint,
@@ -76,13 +67,11 @@ class SiteCard extends StatelessWidget {
                 ),
               ),
 
-              // Contenu
               Padding(
                 padding: const EdgeInsets.all(6),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Catégorie
                     Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 8,
@@ -105,7 +94,6 @@ class SiteCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
 
-                    // Nom
                     Text(
                       site.name,
                       style: const TextStyle(
@@ -118,7 +106,6 @@ class SiteCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
 
-                    // Localisation
                     Row(
                       children: [
                         const Icon(

@@ -27,7 +27,6 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Couleurs selon le type
     Color backgroundColor;
     Color foregroundColor;
     BorderSide? border;

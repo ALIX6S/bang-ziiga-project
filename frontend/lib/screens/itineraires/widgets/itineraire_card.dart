@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../../models/itineraire.dart';
 import '../../../core/config/colors.dart';
+import '../../../core/widgets/image_loading_placeholder.dart';
 
 class ItineraireCard extends StatelessWidget {
   final Itineraire itineraire;
@@ -13,21 +14,10 @@ class ItineraireCard extends StatelessWidget {
     required this.onTap,
   });
 
-  Color _getDifficultyColor() {
-    switch (itineraire.difficulty.toLowerCase()) {
-      case 'facile':
-        return AppColors.sage;
-      case 'moyen':
-        return AppColors.moss;
-      case 'intense':
-        return AppColors.evergreen;
-      default:
-        return AppColors.moss;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final difficultyColor = AppColors.difficultyColor(itineraire.difficulty);
+
     return GestureDetector(
       onTap: onTap,
       child: Card(
@@ -38,7 +28,6 @@ class ItineraireCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image
             ClipRRect(
               borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(16),
@@ -48,17 +37,8 @@ class ItineraireCard extends StatelessWidget {
                 height: 160,
                 width: double.infinity,
                 fit: BoxFit.cover,
-                placeholder: (context, url) => Container(
-                  height: 160,
-                  color: AppColors.sageHint,
-                  child: const Center(
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        AppColors.sage,
-                      ),
-                    ),
-                  ),
-                ),
+                placeholder: (context, url) =>
+                    const ImageLoadingPlaceholder(height: 160),
                 errorWidget: (context, url, error) => Container(
                   height: 160,
                   color: AppColors.sageHint,
@@ -71,13 +51,11 @@ class ItineraireCard extends StatelessWidget {
               ),
             ),
 
-            // Contenu
             Padding(
               padding: const EdgeInsets.all(12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Nom
                   Text(
                     itineraire.name,
                     style: const TextStyle(
@@ -90,10 +68,8 @@ class ItineraireCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
 
-                  // Infos (durée, difficulté, nombre de sites)
                   Row(
                     children: [
-                      // Durée
                       const Icon(
                         Icons.access_time,
                         size: 14,
@@ -109,14 +85,13 @@ class ItineraireCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 12),
 
-                      // Difficulté
                       Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 8,
                           vertical: 2,
                         ),
                         decoration: BoxDecoration(
-                          color: _getDifficultyColor().withValues(alpha: 0.2),
+                          color: difficultyColor.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         child: Text(
@@ -124,13 +99,12 @@ class ItineraireCard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
-                            color: _getDifficultyColor(),
+                            color: difficultyColor,
                           ),
                         ),
                       ),
                       const Spacer(),
 
-                      // Nombre de sites
                       Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 8,

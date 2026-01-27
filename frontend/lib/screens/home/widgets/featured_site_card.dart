@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../../models/site.dart';
 import '../../../core/config/colors.dart';
+import '../../../core/widgets/image_loading_placeholder.dart';
 
 class FeaturedSiteCard extends StatelessWidget {
   final Site site;
@@ -27,7 +28,6 @@ class FeaturedSiteCard extends StatelessWidget {
           ),
           child: Stack(
             children: [
-              // Image en arrière-plan
               ClipRRect(
                 borderRadius: BorderRadius.circular(16),
                 child: CachedNetworkImage(
@@ -35,17 +35,8 @@ class FeaturedSiteCard extends StatelessWidget {
                   height: 200,
                   width: double.infinity,
                   fit: BoxFit.cover,
-                  placeholder: (context, url) => Container(
-                    height: 200,
-                    color: AppColors.sageHint,
-                    child: const Center(
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          AppColors.sage,
-                        ),
-                      ),
-                    ),
-                  ),
+                  placeholder: (context, url) =>
+                      const ImageLoadingPlaceholder(height: 200),
                   errorWidget: (context, url, error) => Container(
                     height: 200,
                     color: AppColors.sageHint,
@@ -58,7 +49,6 @@ class FeaturedSiteCard extends StatelessWidget {
                 ),
               ),
 
-              // Gradient overlay
               Container(
                 height: 200,
                 decoration: BoxDecoration(
@@ -74,7 +64,6 @@ class FeaturedSiteCard extends StatelessWidget {
                 ),
               ),
 
-              // Contenu
               Positioned(
                 bottom: 0,
                 left: 0,
@@ -84,7 +73,6 @@ class FeaturedSiteCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Catégorie
                       Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 8,
@@ -105,7 +93,6 @@ class FeaturedSiteCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
 
-                      // Nom
                       Text(
                         site.name,
                         style: const TextStyle(
@@ -118,7 +105,6 @@ class FeaturedSiteCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
 
-                      // Localisation
                       Row(
                         children: [
                           const Icon(
@@ -145,7 +131,6 @@ class FeaturedSiteCard extends StatelessWidget {
                 ),
               ),
 
-              // Badge "Phare"
               Positioned(
                 top: 12,
                 right: 12,
