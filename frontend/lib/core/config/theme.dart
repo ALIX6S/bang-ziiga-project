@@ -7,7 +7,6 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
 
-      // Palette de couleurs
       colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
         secondary: AppColors.secondary,
@@ -15,10 +14,8 @@ class AppTheme {
         error: AppColors.error,
       ),
 
-      // Scaffold
       scaffoldBackgroundColor: Colors.white,
 
-      // AppBar
       appBarTheme: AppBarTheme(
         backgroundColor: AppColors.evergreen,
         foregroundColor: Colors.white,
@@ -31,10 +28,8 @@ class AppTheme {
         ),
       ),
 
-      // Texte
       textTheme: GoogleFonts.poppinsTextTheme(
         const TextTheme(
-          // Titres
           headlineLarge: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
@@ -51,7 +46,6 @@ class AppTheme {
             color: AppColors.textPrimary,
           ),
 
-          // Corps de texte
           bodyLarge: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.normal,
@@ -68,7 +62,6 @@ class AppTheme {
             color: AppColors.textHint,
           ),
 
-          // Labels
           labelLarge: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
@@ -77,7 +70,6 @@ class AppTheme {
         ),
       ),
 
-      // Boutons
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.evergreen,
@@ -94,7 +86,6 @@ class AppTheme {
         ),
       ),
 
-      // Input fields
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.sageHint.withValues(alpha: 0.3),

@@ -6,7 +6,6 @@ import 'api_service.dart';
 import 'storage_service.dart';
 
 class AuthService {
-  /// Inscription d'un nouvel utilisateur
   static Future<ApiResponse<User>> register({
     required String fullName,
     required String email,
@@ -40,7 +39,6 @@ class AuthService {
     }
   }
 
-  /// Connexion utilisateur
   static Future<ApiResponse<User>> login({
     required String email,
     required String password,
@@ -58,22 +56,18 @@ class AuthService {
       final data = ApiService.parseResponse(response);
 
       if (data['success'] == true || data['status'] == 'success') {
-        // Sauvegarder le token
         final token = data['token'] ?? data['data']?['token'];
         if (token != null) {
           await StorageService.saveToken(token);
         }
 
-        // Sauvegarder les données utilisateur
         final userData = data['data']?['user'] ?? data['user'];
         if (userData != null) {
           await StorageService.saveUserData(jsonEncode(userData));
         }
 
-        // Gérer "Se souvenir de moi"
         await StorageService.setRememberMe(rememberMe);
 
-        // Créer l'objet User
         final user = User.fromJson(userData ?? {});
 
         return ApiResponse.success(
@@ -92,17 +86,14 @@ class AuthService {
     }
   }
 
-  /// Déconnexion
   static Future<ApiResponse<void>> logout() async {
     try {
-      // Optionnel: appeler l'API de déconnexion
       try {
         await ApiService.post(ApiConstants.logout, {});
       } catch (_) {
         // Continuer même si l'API échoue
       }
 
-      // Supprimer les données locales
       await StorageService.clearAll();
 
       return ApiResponse.success(
@@ -115,7 +106,6 @@ class AuthService {
     }
   }
 
-  /// Récupérer l'utilisateur connecté depuis le stockage local
   static User? getCurrentUser() {
     final userData = StorageService.getUserData();
     if (userData != null) {
@@ -128,7 +118,6 @@ class AuthService {
     return null;
   }
 
-  /// Vérifier si l'utilisateur est connecté
   static bool isLoggedIn() {
     return StorageService.isLoggedIn();
   }

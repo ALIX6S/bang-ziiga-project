@@ -1,4 +1,3 @@
-/// Wrapper générique pour les réponses API
 class ApiResponse<T> {
   final bool success;
   final String? message;
@@ -12,7 +11,6 @@ class ApiResponse<T> {
     this.error,
   });
 
-  /// Réponse réussie
   factory ApiResponse.success({T? data, String? message}) {
     return ApiResponse<T>(
       success: true,
@@ -21,7 +19,6 @@ class ApiResponse<T> {
     );
   }
 
-  /// Réponse d'erreur
   factory ApiResponse.error({required String message, dynamic error}) {
     return ApiResponse<T>(
       success: false,
@@ -30,7 +27,6 @@ class ApiResponse<T> {
     );
   }
 
-  /// Parsing depuis JSON
   factory ApiResponse.fromJson(
     Map<String, dynamic> json,
     T Function(dynamic)? fromJsonT,

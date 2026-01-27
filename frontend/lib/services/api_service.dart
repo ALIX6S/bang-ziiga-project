@@ -6,28 +6,26 @@ import '../core/constants/api_constants.dart';
 import 'storage_service.dart';
 
 class ApiService {
-  /// Headers avec token d'authentification
   static Future<Map<String, String>> _getHeaders() async {
     final token = StorageService.getToken();
     final headers = Map<String, String>.from(ApiConstants.headers);
-    
+
     if (token != null) {
       headers['Authorization'] = 'Bearer $token';
     }
-    
+
     return headers;
   }
 
-  /// GET Request
   static Future<http.Response> get(String endpoint) async {
     try {
       final url = Uri.parse('${ApiConstants.baseUrl}$endpoint');
       final headers = await _getHeaders();
-      
+
       final response = await http
           .get(url, headers: headers)
           .timeout(ApiConstants.connectTimeout);
-      
+
       return response;
     } on SocketException {
       throw Exception('Pas de connexion Internet');
@@ -38,7 +36,6 @@ class ApiService {
     }
   }
 
-  /// POST Request
   static Future<http.Response> post(
     String endpoint,
     Map<String, dynamic> body,
@@ -46,7 +43,7 @@ class ApiService {
     try {
       final url = Uri.parse('${ApiConstants.baseUrl}$endpoint');
       final headers = await _getHeaders();
-      
+
       final response = await http
           .post(
             url,
@@ -54,7 +51,7 @@ class ApiService {
             body: jsonEncode(body),
           )
           .timeout(ApiConstants.connectTimeout);
-      
+
       return response;
     } on SocketException {
       throw Exception('Pas de connexion Internet');
@@ -65,7 +62,6 @@ class ApiService {
     }
   }
 
-  /// PUT Request
   static Future<http.Response> put(
     String endpoint,
     Map<String, dynamic> body,
@@ -73,7 +69,7 @@ class ApiService {
     try {
       final url = Uri.parse('${ApiConstants.baseUrl}$endpoint');
       final headers = await _getHeaders();
-      
+
       final response = await http
           .put(
             url,
@@ -81,7 +77,7 @@ class ApiService {
             body: jsonEncode(body),
           )
           .timeout(ApiConstants.connectTimeout);
-      
+
       return response;
     } on SocketException {
       throw Exception('Pas de connexion Internet');
@@ -92,16 +88,15 @@ class ApiService {
     }
   }
 
-  /// DELETE Request
   static Future<http.Response> delete(String endpoint) async {
     try {
       final url = Uri.parse('${ApiConstants.baseUrl}$endpoint');
       final headers = await _getHeaders();
-      
+
       final response = await http
           .delete(url, headers: headers)
           .timeout(ApiConstants.connectTimeout);
-      
+
       return response;
     } on SocketException {
       throw Exception('Pas de connexion Internet');
@@ -112,7 +107,6 @@ class ApiService {
     }
   }
 
-  /// Parser la réponse HTTP
   static Map<String, dynamic> parseResponse(http.Response response) {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(response.body);
