@@ -1,350 +1,269 @@
-# Bãng Zĩiga - Application de Tourisme Local
+# Bãng Zĩiga
+
+Application mobile de tourisme local pour le Burkina Faso. Elle réunit les sites
+touristiques et culturels du pays, des itinéraires de visite prêts à suivre et des
+repères sur la culture locale, dans une application Flutter adossée à une API REST.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
 [![Flutter](https://img.shields.io/badge/Flutter-3.0+-blue.svg)](https://flutter.dev/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-8.0+-green.svg)](https://www.mongodb.com/)
-
-## 🌍 Description
-
-**Bãng Zĩiga** est une application mobile complète de tourisme local développée pour promouvoir les sites touristiques et culturels du Burkina Faso. L'application permet aux utilisateurs de découvrir, explorer et planifier des visites de sites historiques, monuments, musées et lieux culturels à travers une interface intuitive et moderne.
-
-L'application est composée de deux parties principales :
-- **Backend API REST** : API robuste développée avec Node.js, Express et MongoDB
-- **Application Mobile** : Application Flutter cross-platform (Android, iOS, Web)
-
-## ✨ Fonctionnalités
-
-### 🔐 Authentification
-- Inscription et connexion des utilisateurs
-- Gestion des sessions avec JWT
-- Profils utilisateurs personnalisés
-
-### 🏛️ Gestion des Sites Touristiques
-- Catalogue complet des sites touristiques
-- Catégorisation (Monuments, Musées, Parcs, Plages, Sites Historiques, Lieux Culturels)
-- Recherche et filtrage avancés
-- Géolocalisation avec coordonnées GPS
-- Images haute qualité pour chaque site
-- Horaires d'ouverture et informations pratiques
-
-### 🗺️ Itinéraires Touristiques
-- Création et gestion d'itinéraires personnalisés
-- Organisation de visites par thèmes
-- Suggestions d'itinéraires optimisés
-- Partage d'itinéraires entre utilisateurs
-
-### 🎭 Informations Culturelles
-- Base de données culturelle riche
-- Informations sur les traditions locales
-- Histoire et patrimoine culturel
-- Contenus éducatifs et informatifs
-
-### 📱 Interface Utilisateur
-- Design moderne et intuitif
-- Mode sombre/clair
-- Navigation fluide
-- Cache d'images pour une expérience optimale
-- Support multiplateforme
-
-## 🛠️ Technologies Utilisées
-
-### Backend
-- **Node.js** (v18+) - Runtime JavaScript
-- **Express.js** - Framework web
-- **MongoDB** - Base de données NoSQL
-- **Mongoose** - ODM pour MongoDB
-- **JWT** - Authentification
-- **bcryptjs** - Hashage des mots de passe
-- **Helmet** - Sécurité HTTP
-- **CORS** - Gestion des requêtes cross-origin
-- **Rate Limiting** - Protection contre les attaques DDoS
-
-### Frontend
-- **Flutter** (v3.0+) - Framework UI cross-platform
-- **Provider** - Gestion d'état
-- **HTTP** - Client réseau
-- **Shared Preferences** - Stockage local
-- **Cached Network Image** - Cache d'images
-- **Google Fonts** - Typographie
-
-### Outils de Développement
-- **Jest** - Tests unitaires
-- **Nodemon** - Rechargement automatique
-- **Flutter Lints** - Linting du code
-- **Postman** - Test des API
-
-## 📋 Prérequis
-
-Avant de commencer, assurez-vous d'avoir installé :
-
-### Pour le Backend
-- Node.js (version 18 ou supérieure)
-- npm (version 9 ou supérieure)
-- MongoDB (local ou Atlas)
-
-### Pour le Frontend
-- Flutter SDK (version 3.0 ou supérieure)
-- Android Studio (pour Android)
-- Xcode (pour iOS, macOS uniquement)
-
-## 🚀 Installation
-
-### 1. Clonage du Repository
-
-```bash
-git clone https://github.com/votre-username/bang-ziiga-project.git
-cd bang-ziiga-project
-```
-
-### 2. Configuration du Backend
-
-```bash
-cd backend
-
-# Installation des dépendances
-npm install
-
-# Configuration des variables d'environnement
-cp .env.example .env
-```
-
-Éditez le fichier `.env` avec vos configurations :
-
-```env
-NODE_ENV=development
-PORT=3000
-HOST=0.0.0.0
-API_VERSION=v1
-
-# Base de données MongoDB
-MONGODB_URI=mongodb://localhost:27017/bang_ziiga
-# ou pour MongoDB Atlas :
-# MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/bang_ziiga
-
-# JWT
-JWT_SECRET=votre-secret-jwt-très-long-et-complexe
-JWT_EXPIRE=7d
-
-# Rate Limiting
-RATE_LIMIT_WINDOW_MS=900000
-RATE_LIMIT_MAX_REQUESTS=100
-
-# Uploads
-MAX_FILE_SIZE=5000000
-UPLOAD_PATH=./uploads
-```
-
-### 3. Configuration du Frontend
-
-```bash
-cd ../frontend
-
-# Installation des dépendances
-flutter pub get
-
-# Configuration des icônes de l'application (optionnel)
-flutter pub run flutter_launcher_icons:main
-```
-
-## ⚙️ Configuration
-
-### Base de Données
-
-Le projet utilise MongoDB. Vous pouvez :
-
-1. **Installation locale** :
-   ```bash
-   # Ubuntu/Debian
-   sudo apt-get install mongodb
-
-   # macOS avec Homebrew
-   brew install mongodb-community
-
-   # Démarrage
-   mongod
-   ```
-
-2. **MongoDB Atlas** (recommandé pour la production) :
-   - Créez un compte sur [MongoDB Atlas](https://www.mongodb.com/atlas)
-   - Créez un cluster gratuit
-   - Obtenez l'URI de connexion
-
-### Seeders
-
-Pour initialiser la base de données avec des données de test :
-
-```bash
-cd backend
-npm run seed
-```
-
-## 🏃‍♂️ Utilisation
-
-### Démarrage du Backend
-
-```bash
-cd backend
-
-# Mode développement (avec nodemon)
-npm run dev
-
-# Mode production
-npm start
-```
-
-Le serveur démarrera sur `http://localhost:3000` (ou l'IP réseau pour les tests mobiles).
-
-### Démarrage du Frontend
-
-```bash
-cd frontend
-
-# Lancement sur émulateur/device
-flutter run
-
-# Lancement sur Android
-flutter run -d android
-
-# Lancement sur iOS (macOS uniquement)
-flutter run -d ios
-
-# Lancement sur Web
-flutter run -d chrome
-```
-
-## 📚 API Documentation
-
-L'API REST est documentée automatiquement. Une fois le serveur démarré, accédez à :
-
-- **Documentation principale** : `http://localhost:3000/api/v1`
-- **Health Check** : `http://localhost:3000/health`
-
-### Endpoints Principaux
-
-#### Authentification
-- `POST /api/v1/auth/register` - Inscription
-- `POST /api/v1/auth/login` - Connexion
-- `GET /api/v1/auth/me` - Profil utilisateur
-- `POST /api/v1/auth/logout` - Déconnexion
-
-#### Sites Touristiques
-- `GET /api/v1/sites` - Liste des sites (avec filtres)
-- `GET /api/v1/sites/:id` - Détails d'un site
-- `POST /api/v1/sites` - Créer un site (admin)
-- `PUT /api/v1/sites/:id` - Modifier un site (admin)
-- `DELETE /api/v1/sites/:id` - Supprimer un site (admin)
-
-#### Itinéraires
-- `GET /api/v1/itineraires` - Liste des itinéraires
-- `GET /api/v1/itineraires/:id` - Détails d'un itinéraire
-- `POST /api/v1/itineraires` - Créer un itinéraire
-- `PUT /api/v1/itineraires/:id` - Modifier un itinéraire
-- `DELETE /api/v1/itineraires/:id` - Supprimer un itinéraire
-
-#### Culture
-- `GET /api/v1/culture` - Informations culturelles
-- `POST /api/v1/culture` - Ajouter une information culturelle (admin)
-
-## 🧪 Tests
-
-### Tests Backend
-
-```bash
-cd backend
-
-# Exécution des tests
-npm test
-
-# Tests avec couverture
-npm run test:coverage
-```
-
-### Tests Frontend
-
-```bash
-cd frontend
-
-# Exécution des tests
-flutter test
-
-# Tests avec couverture (nécessite flutter_test_coverage)
-flutter test --coverage
-```
-
-## 🚀 Déploiement
+[![MongoDB](https://img.shields.io/badge/MongoDB-7+-green.svg)](https://www.mongodb.com/)
+
+## Sommaire
+
+| Section | Contenu |
+|---|---|
+| [Aperçu](#aperçu) | Captures des écrans de l'application |
+| [Fonctionnalités](#fonctionnalités) | Ce que fait l'application aujourd'hui |
+| [Architecture](#architecture) | Comment les parties s'assemblent |
+| [Stack technique](#stack-technique) | Technologies et dépendances |
+| [Démarrage](#démarrage) | Lancer la stack en local |
+| [Lancer sur un téléphone Android](#lancer-sur-un-téléphone-android) | Build et installation |
+| [API REST](#api-rest) | Points d'entrée exposés |
+| [Comptes de test](#comptes-de-test) | Identifiants du jeu de données |
+| [Structure du projet](#structure-du-projet) | Organisation des dossiers |
+| [Qualité](#qualité) | Tests et analyse statique |
+| [Limites connues](#limites-connues) | Ce qui n'est pas encore fait |
+
+## Aperçu
+
+Captures prises sur un appareil Android connecté à la stack locale.
+
+<table>
+  <tr>
+    <th>Connexion</th>
+    <th>Accueil</th>
+    <th>Sites touristiques</th>
+    <th>Détail d'un site</th>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/01-connexion.png" alt="Connexion" width="200"></td>
+    <td><img src="docs/screenshots/02-accueil.png" alt="Accueil" width="200"></td>
+    <td><img src="docs/screenshots/03-sites.png" alt="Sites touristiques" width="200"></td>
+    <td><img src="docs/screenshots/04-site-detail.png" alt="Détail d'un site" width="200"></td>
+  </tr>
+  <tr>
+    <th>Itinéraires</th>
+    <th>Culture locale</th>
+    <th>Profil</th>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/05-itineraires.png" alt="Itinéraires" width="200"></td>
+    <td><img src="docs/screenshots/06-culture.png" alt="Culture locale" width="200"></td>
+    <td><img src="docs/screenshots/07-profil.png" alt="Profil" width="200"></td>
+  </tr>
+</table>
+
+## Fonctionnalités
+
+### Authentification
+
+Inscription et connexion par email et mot de passe, session portée par un jeton JWT
+conservé sur l'appareil. Les mots de passe sont hachés avec bcrypt. Deux rôles
+existent, `user` et `admin`, ce dernier seul autorisé à écrire dans le catalogue.
+
+### Sites touristiques
+
+Catalogue des sites avec image, catégorie, localisation et description. Recherche
+textuelle, filtrage par catégorie, mise en avant des sites phares sur l'accueil et
+fiche de détail par site. Les catégories couvertes par le jeu de données sont
+Monument, Musée, Parc, Site Historique et Lieu Culturel.
+
+### Itinéraires
+
+Parcours thématiques reliant plusieurs sites, avec durée, difficulté, distance et
+la liste ordonnée des étapes. La fiche de détail affiche chaque étape avec le site
+correspondant.
+
+### Culture locale
+
+Trois sections, Traditions, Gastronomie et Événements, présentant les repères
+culturels du pays.
+
+### Profil
+
+Identité du compte connecté et déconnexion.
+
+## Architecture
+
+<p align="center">
+  <img src="docs/architecture.svg" alt="Architecture : application Flutter, API Node.js et MongoDB orchestrées par Docker Compose" width="100%">
+</p>
+
+L'application mobile ne connaît que l'API. Elle est organisée en quatre couches:
+les écrans affichent, les providers portent l'état, les repositories traduisent les
+réponses de l'API en modèles, et les services parlent le HTTP.
+
+Côté serveur, chaque ressource suit le même chemin: une route déclare le verbe et
+les protections, un contrôleur applique la logique, un modèle Mongoose valide et
+persiste. Les opérations CRUD communes aux sites, aux itinéraires et aux
+informations culturelles sont produites par une fabrique partagée,
+`src/controllers/crudFactory.js`.
+
+Les images des sites sont servies en statique depuis `backend/uploads`, sous le
+préfixe `/uploads`.
+
+## Stack technique
 
 ### Backend
 
-#### Render (recommandé)
-1. Créez un compte sur [Render](https://render.com)
-2. Connectez votre repository GitHub
-3. Créez un service Web
-4. Configurez les variables d'environnement
-5. Déployez
-
-#### Autres options
-- Heroku
-- Railway
-- DigitalOcean App Platform
+| Rôle | Technologie |
+|---|---|
+| Runtime | Node.js 18 ou plus |
+| Framework web | Express 4 |
+| Base de données | MongoDB 7, via Mongoose 8 |
+| Authentification | JSON Web Token, bcryptjs |
+| Sécurité | Helmet, CORS, express-rate-limit |
+| Validation | express-validator |
+| Journalisation | Morgan |
+| Compression | compression |
 
 ### Frontend
 
-#### Google Play Store / App Store
+| Rôle | Technologie |
+|---|---|
+| Framework | Flutter 3 |
+| Gestion d'état | provider |
+| Réseau | http |
+| Stockage local | shared_preferences |
+| Cache d'images | cached_network_image |
+| Typographie | google_fonts |
+| Validation d'email | email_validator |
+
+## Démarrage
+
+Tout tourne dans des conteneurs Docker. Aucun outil n'est installé sur la machine:
+ni Node, ni MongoDB, ni Flutter, ni le SDK Android. Prérequis: Docker et `make`.
+
 ```bash
-cd frontend
-
-# Build Android APK
-flutter build apk --release
-
-# Build iOS (macOS uniquement)
-flutter build ios --release
+cd infra
+make up      # MongoDB et l'API sur http://localhost:3000
+make seed    # jeu de données: 6 sites, 3 itinéraires, 5 fiches culture, 2 comptes
+make apk     # APK -> infra/out/bang-ziiga.apk (premier build long: téléchargements)
+make phone   # installe et lance sur le téléphone branché en USB (adb + débogage USB)
+make clean   # supprime tout: conteneurs, données, caches
 ```
 
-#### Web
-```bash
-# Build pour le web
-flutter build web --release
+Le détail (fichiers, tunnel `adb reverse`, variables) est dans [infra/README.md](infra/README.md).
 
-# Déploiement sur Firebase Hosting
-firebase deploy
+## API REST
+
+Base: `http://localhost:3000/api/v1`
+
+### Authentification
+
+| Méthode | Chemin | Accès | Description |
+|---|---|---|---|
+| POST | `/auth/register` | Public | Créer un compte |
+| POST | `/auth/login` | Public | Se connecter, retourne un JWT |
+| GET | `/auth/me` | Authentifié | Profil du compte courant |
+| POST | `/auth/logout` | Authentifié | Déconnexion |
+
+### Sites
+
+| Méthode | Chemin | Accès | Description |
+|---|---|---|---|
+| GET | `/sites` | Public | Liste, avec recherche et filtres |
+| GET | `/sites/featured` | Public | Sites mis en avant |
+| GET | `/sites/:id` | Public | Détail d'un site |
+| POST | `/sites` | Admin | Créer un site |
+| PUT | `/sites/:id` | Admin | Modifier un site |
+| DELETE | `/sites/:id` | Admin | Supprimer un site |
+
+### Itinéraires
+
+| Méthode | Chemin | Accès | Description |
+|---|---|---|---|
+| GET | `/itineraires` | Public | Liste des itinéraires |
+| GET | `/itineraires/:id` | Public | Détail, avec les sites associés |
+| POST | `/itineraires` | Admin | Créer un itinéraire |
+| PUT | `/itineraires/:id` | Admin | Modifier un itinéraire |
+| DELETE | `/itineraires/:id` | Admin | Supprimer un itinéraire |
+
+### Culture
+
+| Méthode | Chemin | Accès | Description |
+|---|---|---|---|
+| GET | `/culture` | Public | Toutes les informations culturelles |
+| GET | `/culture/:type` | Public | Filtrage par type |
+| POST | `/culture` | Admin | Créer une information |
+| PUT | `/culture/:id` | Admin | Modifier une information |
+| DELETE | `/culture/:id` | Admin | Supprimer une information |
+
+### Divers
+
+| Méthode | Chemin | Description |
+|---|---|---|
+| GET | `/health` | État du service |
+| GET | `/uploads/...` | Images des sites et des itinéraires |
+
+Une collection Postman est disponible dans `docs/postman_collection.json`.
+
+## Comptes de test
+
+Créés par le seeder, pour le développement local uniquement.
+
+| Rôle | Email | Mot de passe |
+|---|---|---|
+| Administrateur | `admin@bangziiga.com` | `admin123` |
+| Utilisateur | `alix.vebamba@bangziiga.com` | `Alix2026!` |
+
+## Structure du projet
+
+```
+bang-ziiga-project/
+├── backend/
+│   ├── server.js                 point d entree
+│   ├── src/
+│   │   ├── app.js                configuration Express
+│   │   ├── config/               connexion MongoDB
+│   │   ├── controllers/          logique metier, dont crudFactory.js
+│   │   ├── middlewares/          authentification, validation, erreurs
+│   │   ├── models/               schemas Mongoose
+│   │   ├── routes/               declaration des endpoints
+│   │   ├── seeders/              jeu de donnees de developpement
+│   │   └── utils/
+│   └── uploads/                  images servies en statique
+├── frontend/
+│   ├── lib/
+│   │   ├── core/                 theme, couleurs, constantes, widgets partages
+│   │   ├── data/repositories/    acces aux donnees de l API
+│   │   ├── models/               modeles metier
+│   │   ├── providers/            gestion d etat
+│   │   ├── screens/              ecrans et widgets propres a un ecran
+│   │   ├── services/             client HTTP, authentification, stockage
+│   │   └── utils/
+│   └── test/                     tests unitaires et de widgets
+├── infra/                        Dockerfiles, docker-compose, Makefile, scripts
+└── docs/                         documentation, captures, collection Postman
 ```
 
-## 🤝 Contribution
+## Qualité
 
-Les contributions sont les bienvenues ! Pour contribuer :
+| Vérification | Commande | État |
+|---|---|---|
+| Analyse statique Flutter | `make -C infra test` | Aucun problème |
+| Tests Flutter | `make -C infra test` | 32 tests au vert |
+| Tests backend | Aucun | À écrire |
 
-1. Forkez le projet
-2. Créez une branche feature (`git checkout -b feature/AmazingFeature`)
-3. Committez vos changements (`git commit -m 'Add some AmazingFeature'`)
-4. Pushez vers la branche (`git push origin feature/AmazingFeature`)
-5. Ouvrez une Pull Request
+Les tests du frontend couvrent les modèles, le provider des sites, le service HTTP
+et le widget de carte de site.
 
-### Guidelines
-- Respectez les conventions de code
-- Ajoutez des tests pour les nouvelles fonctionnalités
-- Mettez à jour la documentation
-- Utilisez des commits descriptifs
+## Limites connues
 
-## 📄 Licence
+Points identifiés et non traités à ce jour, listés pour éviter les mauvaises
+surprises.
 
-Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus de détails.
+| Sujet | Détail |
+|---|---|
+| Écran Culture | Le contenu affiché est codé en dur dans l'application. L'API `/culture` existe et renvoie des données, mais l'écran ne les consomme pas. |
+| Tests backend | Aucun test automatisé côté API. |
+| Identifiant d'application | `applicationId` vaut encore `com.example.frontend`, valeur par défaut du modèle Flutter. À changer avant toute publication. |
+| Validation des écritures | Les POST et PUT sur les sites, itinéraires et informations culturelles ne passent pas par express-validator, seul le schéma Mongoose les protège. |
+| Champ `imageUrl` | Déclaré à la fois obligatoire et avec une valeur par défaut, donc l'obligation ne se déclenche jamais. |
+| Récupération par identifiant | `sites_repository.dart` et `itineraires_repository.dart` convertissent l'identifiant en entier, alors que MongoDB produit des ObjectId. Ce chemin n'est pas emprunté par l'interface actuelle, qui navigue avec l'objet déjà chargé. |
+| CORS | Ouvert à toutes les origines. À restreindre avant une mise en production. |
 
-## 👤 Auteur
+## Licence
 
-**Alix Carine VEBAMBA**
-- Email : [alixcarinestudies@gmail.com]
-- LinkedIn : [https://www.linkedin.com/in/alix-carine-vebamba-83a0a42a0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app]
-- GitHub : [https://github.com/alixHub-ux]
-
-## 🙏 Remerciements
-
-- Équipe Flutter pour le framework incroyable
-- Communauté Node.js pour les outils robustes
-- MongoDB pour la base de données flexible
-- Organisation Internationale de la Francophonie (OIF)
-- Formateurs DCLIC
-
----
-
-⭐ Si ce projet vous plaît, n'hésitez pas à lui donner une étoile sur GitHub !
+MIT. Voir le fichier de licence du dépôt.
