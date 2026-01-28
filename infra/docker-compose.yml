@@ -1,0 +1,68 @@
+# Stack complète de Bãng Zĩiga. Lancer depuis la racine du dépôt :
+#   docker compose -f infra/docker-compose.yml up -d --build
+# ou plus simplement : make -C infra up   (voir infra/README.md)
+name: bang-ziiga
+
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ../backend
+      dockerfile: ../infra/backend/Dockerfile
+    restart: unless-stopped
+    environment: &apienv
+      NODE_ENV: development
+      PORT: 3000
+      API_VERSION: v1
+      MONGODB_URI: mongodb://mongo:27017/bang_ziiga
+      JWT_SECRET: ${JWT_SECRET:-dev_secret_local_only_change_me}
+      JWT_EXPIRES_IN: 7d
+      CORS_ORIGIN: "*"
+    ports:
+      - "${API_PORT:-3000}:3000"
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  # docker compose --profile tools run --rm seed
+  seed:
+    profiles: ["tools"]
+    build:
+      context: ../backend
+      dockerfile: ../infra/backend/Dockerfile
+    environment: *apienv
+    volumes:
+      - ./backend/localize-images.js:/app/localize-images.js:ro
+    command: sh -c "node src/seeders/index.js && node localize-images.js"
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  # docker compose --profile mobile run --rm mobile-build   -> infra/out/bang-ziiga.apk
+  mobile-build:
+    profiles: ["mobile"]
+    build: ./mobile
+    environment:
+      API_URL: ${APP_API_URL:-http://localhost:3000/api/v1}
+    volumes:
+      - ../frontend:/src:ro
+      - ./out:/out
+      - pub_cache:/root/.pub-cache
+      - gradle_cache:/root/.gradle
+      - android_keystore:/root/.android
+
+volumes:
+  mongo_data:
+  pub_cache:
+  gradle_cache:
+  android_keystore:
