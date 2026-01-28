@@ -6,21 +6,21 @@ Application mobile Flutter de découverte touristique et culturelle développée
 
 ---
 
-##  À propos
+## À propos
 
 Bãng Zĩiga est une application mobile permettant de découvrir les sites touristiques, la culture locale et des itinéraires de visite. Elle s'adresse aux touristes et aux habitants souhaitant mieux connaître leur territoire.
 
 ### Fonctionnalités principales
 
--  **Authentification utilisateur** (inscription, connexion, déconnexion)
--  **Guide des sites touristiques** (liste, détails, recherche)
--  **Itinéraires touristiques** (parcours prédéfinis avec sites inclus)
--  **Informations culturelles** (traditions, gastronomie, événements)
--  **Profil utilisateur** (gestion du compte)
+- **Authentification utilisateur** (inscription, connexion, déconnexion)
+- **Guide des sites touristiques** (liste, détails, recherche)
+- **Itinéraires touristiques** (parcours prédéfinis avec sites inclus)
+- **Informations culturelles** (traditions, gastronomie, événements)
+- **Profil utilisateur** (gestion du compte)
 
 ---
 
-##  Technologies Utilisées
+## Technologies Utilisées
 
 - **Framework**: Flutter 3.x
 - **Langage**: Dart
@@ -32,7 +32,7 @@ Bãng Zĩiga est une application mobile permettant de découvrir les sites touri
 
 ---
 
-##  Installation et Démarrage
+## Installation et Démarrage
 
 ### Prérequis
 
@@ -69,7 +69,7 @@ static const String baseUrl = 'https://bang-ziiga-project.onrender.com/api/v1';
 
 ---
 
-## 📁 Structure du Projet
+## Structure du Projet
 
 ```
 lib/
@@ -89,7 +89,7 @@ lib/
 
 ---
 
-## 🎨 Palette de Couleurs - Sage Green
+## Palette de Couleurs - Sage Green
 
 - **Sage Hint** `#BFCFBB` - Arrière-plans
 - **Mint** `#BFCFBB` - Conteneurs
@@ -99,7 +99,7 @@ lib/
 
 ---
 
-## 🧪 Tests
+## Tests
 
 ```bash
 # Tests unitaires
@@ -111,7 +111,7 @@ flutter drive --target=test_driver/app.dart
 
 ---
 
-## 📱 Build et Déploiement
+## Build et Déploiement
 
 ### Android (APK)
 
@@ -135,21 +135,21 @@ flutter build ios --release
 
 ---
 
-## 👨‍💻 Développeur
+## ‍ Développeur
 
 **Nom**: Alix Carine VEBAMBA
-**Formation**: DCLIC - Développement Mobile Niveau Approfondi  
+**Formation**: DCLIC - Développement Mobile Niveau Approfondi
 **Date**: Janvier 2026
 
 ---
 
-## 📄 Licence
+## Licence
 
 Ce projet est développé dans un cadre pédagogique.
 
 ---
 
-## 🙏 Remerciements
+## Remerciements
 
 - Organisation Internationale de la Francophonie (OIF)
 - Formateurs DCLIC
@@ -157,7 +157,7 @@ Ce projet est développé dans un cadre pédagogique.
 
 ---
 
-## 📞 Support
+## Support
 
 Pour toute question ou problème :
 - Email: alixcarinestudies@gmail.com
