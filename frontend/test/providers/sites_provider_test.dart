@@ -35,7 +35,6 @@ void main() {
           imageUrl: 'image3.jpg',
         ),
       ];
-      // Manually set sites for testing
       provider.setSitesForTesting(testSites);
     });
 
@@ -116,7 +115,6 @@ void main() {
     });
 
     test('clearError should reset error state', () {
-      // Simulate error state
       provider.setStateForTesting(SitesState.error, error: 'Test error');
 
       expect(provider.hasError, true);
