@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="600" viewBox="0 0 1040 600" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#344E41"/>
+    </marker>
+    <marker id="arrow-grey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8A958C"/>
+    </marker>
+  </defs>
+
+  <rect width="1040" height="600" fill="#FFFFFF"/>
+  <text x="520" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#1F2D24">Architecture de Bãng Zĩiga</text>
+
+  <!-- Téléphone -->
+  <rect x="30" y="70" width="270" height="380" rx="14" fill="#FAFBFA" stroke="#8A958C" stroke-width="1.3" stroke-dasharray="6 5"/>
+  <text x="48" y="95" font-size="12" fill="#5E6B62">Téléphone Android (USB)</text>
+  <rect x="48" y="108" width="234" height="326" rx="10" fill="#FFFFFF" stroke="#344E41" stroke-width="1.6"/>
+  <text x="165" y="134" text-anchor="middle" font-size="16" font-weight="700" fill="#1F2D24">Application Flutter</text>
+  <g>
+    <rect x="66" y="150" width="198" height="50" rx="7" fill="#EEF3EE" stroke="#A7BBA9" stroke-width="1"/>
+    <text x="165" y="171" text-anchor="middle" font-size="13" fill="#1F2D24">Écrans</text>
+    <text x="165" y="189" text-anchor="middle" font-size="11.5" fill="#5E6B62">sites, itinéraires, culture, profil</text>
+    <rect x="66" y="218" width="198" height="50" rx="7" fill="#EEF3EE" stroke="#A7BBA9" stroke-width="1"/>
+    <text x="165" y="239" text-anchor="middle" font-size="13" fill="#1F2D24">Providers</text>
+    <text x="165" y="257" text-anchor="middle" font-size="11.5" fill="#5E6B62">état (provider)</text>
+    <rect x="66" y="286" width="198" height="50" rx="7" fill="#EEF3EE" stroke="#A7BBA9" stroke-width="1"/>
+    <text x="165" y="307" text-anchor="middle" font-size="13" fill="#1F2D24">Repositories</text>
+    <text x="165" y="325" text-anchor="middle" font-size="11.5" fill="#5E6B62">JSON → modèles Dart</text>
+    <rect x="66" y="354" width="198" height="50" rx="7" fill="#EEF3EE" stroke="#A7BBA9" stroke-width="1"/>
+    <text x="165" y="375" text-anchor="middle" font-size="13" fill="#1F2D24">Services</text>
+    <text x="165" y="393" text-anchor="middle" font-size="11.5" fill="#5E6B62">HTTP, auth, stockage local</text>
+    <path d="M165,200 v16" stroke="#344E41" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+    <path d="M165,268 v16" stroke="#344E41" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+    <path d="M165,336 v16" stroke="#344E41" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- Docker Compose -->
+  <rect x="370" y="70" width="640" height="500" rx="14" fill="#FAFBFA" stroke="#8A958C" stroke-width="1.3" stroke-dasharray="6 5"/>
+  <text x="388" y="95" font-size="12" fill="#5E6B62">Docker Compose · infra/docker-compose.yml</text>
+
+  <!-- API -->
+  <rect x="388" y="108" width="300" height="326" rx="10" fill="#FFFFFF" stroke="#344E41" stroke-width="1.6"/>
+  <text x="538" y="134" text-anchor="middle" font-size="16" font-weight="700" fill="#1F2D24">API REST Node.js</text>
+  <text x="538" y="152" text-anchor="middle" font-size="11.5" fill="#5E6B62">Express · port 3000</text>
+  <g>
+    <rect x="406" y="166" width="264" height="46" rx="7" fill="#EEF3EE" stroke="#A7BBA9" stroke-width="1"/>
+    <text x="538" y="186" text-anchor="middle" font-size="13" fill="#1F2D24">Routes /api/v1</text>
+    <text x="538" y="203" text-anchor="middle" font-size="11.5" fill="#5E6B62">auth, sites, itinéraires, culture</text>
+    <rect x="406" y="228" width="264" height="46" rx="7" fill="#EEF3EE" stroke="#A7BBA9" stroke-width="1"/>
+    <text x="538" y="248" text-anchor="middle" font-size="13" fill="#1F2D24">Middlewares</text>
+    <text x="538" y="265" text-anchor="middle" font-size="11.5" fill="#5E6B62">JWT, validation, erreurs</text>
+    <rect x="406" y="290" width="264" height="46" rx="7" fill="#EEF3EE" stroke="#A7BBA9" stroke-width="1"/>
+    <text x="538" y="310" text-anchor="middle" font-size="13" fill="#1F2D24">Contrôleurs</text>
+    <text x="538" y="327" text-anchor="middle" font-size="11.5" fill="#5E6B62">CRUD partagé : crudFactory.js</text>
+    <rect x="406" y="352" width="264" height="46" rx="7" fill="#EEF3EE" stroke="#A7BBA9" stroke-width="1"/>
+    <text x="538" y="372" text-anchor="middle" font-size="13" fill="#1F2D24">Modèles Mongoose</text>
+    <text x="538" y="389" text-anchor="middle" font-size="11.5" fill="#5E6B62">User, Site, Itineraire, CultureInfo</text>
+    <path d="M538,212 v14" stroke="#344E41" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+    <path d="M538,274 v14" stroke="#344E41" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+    <path d="M538,336 v14" stroke="#344E41" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+  </g>
+  <text x="538" y="422" text-anchor="middle" font-size="11.5" fill="#5E6B62">+ images statiques /uploads</text>
+
+  <!-- MongoDB -->
+  <rect x="770" y="160" width="222" height="222" rx="10" fill="#FFFFFF" stroke="#344E41" stroke-width="1.6"/>
+  <text x="881" y="186" text-anchor="middle" font-size="16" font-weight="700" fill="#1F2D24">MongoDB 7</text>
+  <text x="881" y="204" text-anchor="middle" font-size="11.5" fill="#5E6B62">base bang_ziiga</text>
+  <rect x="790" y="218" width="182" height="120" rx="7" fill="#EEF3EE" stroke="#A7BBA9" stroke-width="1"/>
+  <text x="881" y="242" text-anchor="middle" font-size="13" fill="#1F2D24">users</text>
+  <text x="881" y="266" text-anchor="middle" font-size="13" fill="#1F2D24">sites</text>
+  <text x="881" y="290" text-anchor="middle" font-size="13" fill="#1F2D24">itineraires</text>
+  <text x="881" y="314" text-anchor="middle" font-size="13" fill="#1F2D24">cultureinfos</text>
+  <text x="881" y="364" text-anchor="middle" font-size="11.5" fill="#5E6B62">volume mongo_data</text>
+
+  <!-- Flux principaux -->
+  <path d="M282,379 C330,379 340,189 404,189" stroke="#344E41" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+  <rect x="288" y="260" width="100" height="44" rx="6" fill="#FFFFFF"/>
+  <text x="338" y="278" text-anchor="middle" font-size="12" font-weight="600" fill="#344E41">HTTP / JSON</text>
+  <text x="338" y="294" text-anchor="middle" font-size="11.5" fill="#5E6B62">adb reverse</text>
+  <path d="M670,375 C720,375 720,271 768,271" stroke="#344E41" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+  <text x="735" y="400" text-anchor="middle" font-size="12" font-weight="600" fill="#344E41">Mongoose</text>
+
+  <!-- Outils -->
+  <rect x="388" y="460" width="300" height="88" rx="10" fill="#FFFFFF" stroke="#8A958C" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="538" y="486" text-anchor="middle" font-size="16" font-weight="700" fill="#1F2D24">mobile-build</text>
+  <text x="538" y="506" text-anchor="middle" font-size="11.5" fill="#5E6B62">Flutter + SDK Android + NDK</text>
+  <text x="538" y="525" text-anchor="middle" font-size="11.5" fill="#5E6B62">make apk → infra/out/bang-ziiga.apk</text>
+  <rect x="770" y="460" width="222" height="88" rx="10" fill="#FFFFFF" stroke="#8A958C" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="881" y="486" text-anchor="middle" font-size="16" font-weight="700" fill="#1F2D24">seed</text>
+  <text x="881" y="506" text-anchor="middle" font-size="11.5" fill="#5E6B62">make seed</text>
+  <text x="881" y="525" text-anchor="middle" font-size="11.5" fill="#5E6B62">données de démo</text>
+  <path d="M881,458 V384" stroke="#8A958C" stroke-width="1.4" fill="none" stroke-dasharray="5 4" marker-end="url(#arrow-grey)"/>
+  <path d="M386,504 H165 V452" stroke="#8A958C" stroke-width="1.4" fill="none" stroke-dasharray="5 4" marker-end="url(#arrow-grey)"/>
+  <text x="275" y="496" text-anchor="middle" font-size="11.5" fill="#5E6B62">make phone (adb install)</text>
+</svg>
