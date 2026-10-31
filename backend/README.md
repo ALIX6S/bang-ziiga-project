@@ -214,7 +214,7 @@ Fichier `.env` requis :
 NODE_ENV=development
 PORT=3000
 API_VERSION=v1
-MONGODB_URI=mongodb+srv://bangziiga_admin:<db_password>@bangziiga.twkyqva.mongodb.net/?appName=bangziiga
+MONGODB_URI=
 JWT_SECRET=votre_cle_secrete_super_longue
 JWT_EXPIRES_IN=7d
 CORS_ORIGIN=*
